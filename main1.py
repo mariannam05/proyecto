@@ -14,7 +14,8 @@ from colored import fg, bg, attr
 
 jugadores = []
 
-# jugadores = recibir_datos_del_txt('C:/home/mariannam05/proyecto/jugadores', jugadores)
+jugadores = recibir_datos_del_txt('jugadores.txt', jugadores)
+
 
 
 
@@ -33,7 +34,7 @@ while True:
         if int(opc) == 1:
             print(mensajes.msg_registro1)
             jugadores=registro_jugador(jugadores)
-            # cargar_datos_en_txt('C:/home/mariannam05/proyecto/jugadores', jugadores)
+            cargar_datos_en_txt('jugadores.txt', jugadores)
             print('\n')
             # comenzar_juego(jugadores)
             # AQUI ES DONDE DEBES VERIFICAR Y HACER UNA FUNCION LLAMADA DIFICULTAD donde DECIDES ESO
@@ -45,7 +46,12 @@ while True:
             else:
                 buscar_jugador(jugadores)
     elif int(menu)== 2:
-        print(mensajes.instrucciones)
+        print('\n')
+        print('------------------------')
+        print('%sEste es un juego muy simple, te explico: %s' % (fg(103), attr(2)))
+        print((mensajes.instrucciones) % (fg(109), attr(0)))
+        print('------------------------')
+        
     otro = input("%s\n¿Desea volver al menu?('S' para 'sí', 'N' para 'no'): %s"% (fg(222), attr(0)))
     while (otro.upper() != 'S') and (otro.upper() != 'N'):
         otro = input("%sPor favor ingrese un valor válido: %s"% (fg(1), attr(0)))

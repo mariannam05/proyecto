@@ -23,8 +23,7 @@ despedida = ('''
 bueno, hasta luego 😭
 ''')
 
-instrucciones = ('''
-Este es un juego muy simple, te explico:
+instrucciones = ('''%s
     El juego consiste en que estas en la biblioteca de la UNIMET en cuarentena, para resolver un problema que te contaremos más adelante,
     ahi te debes ir moviendo por las diferentes habitaciones, ir resolviendo acertijos y asi recibir bonificaciones que te ayudaran a resolver
     el problema que te hizo ir hasta la universidad en plena pandemia. 
@@ -38,8 +37,7 @@ Este es un juego muy simple, te explico:
         › l = ir a la izquierda de la sala
         › c = ir al centro de la sala
         › ENTER: regresar a la sala principal (ojo: si estas en una sala principal y pulsas enter no harás nada)
-
-''')
+%s''')
 
 narrativa1 = '''
 Bienvenido {nuevo_jugador.username}...

@@ -7,6 +7,7 @@
 #     print(f'narrativa1')
 
 como usar la libreria de los colores fg elegimos el color de la letra, con esta lista:
+
 +-----+---------------------+
 |Code | Description         |
 +-----+---------------------+
