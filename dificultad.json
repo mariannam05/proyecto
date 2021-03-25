@@ -1,0 +1,16 @@
+{"facil":{
+    "tiempo": 30,
+    "vidas": 5,
+    "pistas": 5
+    },
+"medio":{
+    "tiempo": 20,
+    "vidas": 3,
+    "pistas": 3
+    },
+"dificil": {
+    "tiempo": 15,
+    "vidas": 1,
+    "pista": 2
+    }
+}
