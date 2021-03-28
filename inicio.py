@@ -269,6 +269,3 @@ como usar la libreria de los colores fg elegimos el color de la letra, con esta 
 | 255 | grey_93             |
 | 256 | default             |
 +-----+---------------------+
-
-from colored import fg, bg, attr
-print ('%s Hello World !!! %s' % (fg(4), attr(0)))

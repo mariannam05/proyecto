@@ -33,9 +33,9 @@ instrucciones = ('''%s
 
 ¿Cómo te mueves en el mapa?
     Sencillo, como cualquier juego de computadora puedes usar las teclas del teclado, los cuales son:
-        › r = ir a la derecha de la sala
-        › l = ir a la izquierda de la sala
-        › c = ir al centro de la sala
+        › r = seleccionar el objeto de la derecha de la sala
+        › l = seleccionar el objeto de la izquierda de la sala
+        › c = seleccionar el objeto del centro de la sala
         › ENTER: regresar a la sala principal (ojo: si estas en una sala principal y pulsas enter no harás nada)
 %s''')
 

@@ -12,14 +12,19 @@ from colored import fg, bg, attr
 
 
 
-jugadores = []
+jugadores = []      #lista para guardar a los jugadores cuando se registren
 
-jugadores = recibir_datos_del_txt('jugadores.txt', jugadores)
+jugadores = recibir_datos_del_txt('jugadores.txt', jugadores)       #para guardar los usuarios registrados para siempre en la base de datos
+
+#api
+import requests
+url = "https://api-escapamet.vercel.app/"
+response = requests.get(url)
+info_rooms = response.json()
+print(info_rooms)
 
 
-
-
-print('%s¡¡BIENVENIDO AL MEJOR JUEGO DE LA UNIMET!! %s' % (fg(3), attr(0)))
+print('%s¡¡BIENVENIDO AL MEJOR JUEGO DE LA UNIMET!! %s' % (fg(3), attr(0)))     #inicio del juego
 while True:
     print(mensajes.msg_option_menu)
     menu = input('Ahora cuentame, ¿Qué quieres hacer?: \n ==> ')
