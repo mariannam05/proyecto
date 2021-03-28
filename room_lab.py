@@ -17,9 +17,9 @@ lab = Laboratorio(obj_izq, obj_der, obj_cen, ubi, game)
 def func_lab(nuevo_jugador):
     doorClosed = True
     lab = Laboratorio(obj_izq, obj_der, obj_cen, ubi, game)
-    print(lab.mostrar())
     
     while doorClosed:
+        print(lab.mostrar())
         print(imagenes.laboratorio)
         print(mensajes.comandos)
         seleccion = input(mensajes.direccion).lower()

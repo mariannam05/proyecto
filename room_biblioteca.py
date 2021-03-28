@@ -16,9 +16,9 @@ ubi = 0
 def func_biblioteca(nuevo_jugador):
     doorClosed = True    
     biblio = Biblioteca(obj_izq,obj_der,obj_cen,ubi, game)
-    print(biblio.mostrar())
     
     while doorClosed:
+        print(biblio.mostrar())
         print(imagenes.biblioteca)
         print(mensajes.comandos)
         seleccion = input(mensajes.direccion).lower()
