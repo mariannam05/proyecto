@@ -1,16 +1,3 @@
-# from Cuartos import Cuartos
-
-# class Biblioteca(Cuartos):
-#     def __init__(self,ubi, obj_izq, obj_der, obj_cen, game):
-#         self.game = game
-#         self.ubi = Biblioteca
-#         super().__init__(ubi, obj_izq, obj_der, obj_cen)
-
-#     def mostrar(self):
-#         return(f'Nombre del cuarto: {self.ubi} \nObjeto de la izquierda: {self.obj_izq} \nObjeto de la derecha: {self.obj_der} \nObjeto del centro: {self.obj_cen} \nCantidad de juegos: {self.game}')
-
-
-
 from Cuartos import Cuartos
 
 class Biblioteca(Cuartos):

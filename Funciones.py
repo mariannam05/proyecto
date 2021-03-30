@@ -69,18 +69,18 @@ def registro_jugador(jugadores):
     return jugadores
 
 
-def ver_jugadores(jugadores):
-    '''
-    Con esta función se le aplica a todos los jugadores el método "mostrar" para imprimir de forma organizada sus atributos.
+# def ver_jugadores(jugadores):
+#     '''
+#     Con esta función se le aplica a todos los jugadores el método "mostrar" para imprimir de forma organizada sus atributos.
 
-    Argumentos => jugadores: lista de jugadores ya registrados.
+#     Argumentos => jugadores: lista de jugadores ya registrados.
 
-    Retorna: => para cada jugador se imprime el número de registro y seguidamente sus datos.
+#     Retorna: => para cada jugador se imprime el número de registro y seguidamente sus datos.
 
-    '''
-    for i,a in enumerate(jugadores):
-        print("---",i+1,"---------------")
-        a.mostrar()
+#     '''
+#     for i,a in enumerate(jugadores):
+#         print("---",i+1,"---------------")
+#         a.mostrar()
 
 
 def buscar_jugador(jugadores):
@@ -92,20 +92,18 @@ def buscar_jugador(jugadores):
     Retorna: => si el username ingresado esta registrado o no.
 
     '''
-    buscar = input('Ingresa tu username: ')
-    for i,a in enumerate(jugadores):
-        print("---",i+1,"---------------")
-        if a.username == buscar:
-            print(f'{buscar} si esta registrado!')
+    j = input('Ingresa tu username: ')
+    for a in jugadores:
+        if a.username == j:
+            print(f'{j} si esta registrado!')
             clave = input('ingrese su contraseña: ')
             while not (clave == a.contraseña):
                 clave = input('CONTRASEÑA INCORRECTA, ingrese la contraseña nuevamente: ')
             if a.contraseña == clave:
-                print(f'perfecto, si eres tu {buscar}!')
-        else:
-            print(f'lo sentimos pero {buscar} no esta registrado todavia')
-
-
+                print(f'perfecto, si eres tu {j}!')
+                return j
+    print(f'El username {j}, no esta registrado todavía 🥴')
+    
 
 
 def recibir_datos_del_txt(nombre_txt,datos):
@@ -129,3 +127,54 @@ def cargar_datos_en_txt(nombre_txt,datos):
     
     escritura_binaria.close()
     
+
+def elige_dificultad():
+    print("""
+    ¿Preparado?
+    Elige la dificultad  en la que quieres jugar:
+    1. Fácil (relajado)
+    2. Medio (si te sientes con suerte)
+    3. Dificil (solo para expertos)
+    """)
+    opcion = input("=> ")
+    while not (opcion==1 or opcion==2 or opcion==3):
+        opcion = input("%sPor favor ingrese un valor válido (1/2/3): %s"% (fg(1), attr(0)))
+    
+    if opcion == 1:
+        opcion = 'facil'
+    elif opcion == 2:
+        opcion = 'medio'
+    elif opcion == 3:
+        opcion = 'dificil'
+
+    return opcion 
+
+def selec_tiempo(dificultad):
+    with open('dificultad.txt', 'r') as d:
+        for line in d:
+            if line.split(',')[0] == dificultad:
+                tiempo = line.split(',')[1]
+                tiempo = tiempo.replace(' ', '')
+                tiempo = tiempo.replace('minutos', '')
+                return int(tiempo)
+
+def selec_vida(dificultad):
+    with open('dificultad.txt', 'r') as d:
+        for line in d:
+            if line.split(',')[0] == dificultad:
+                vida = line.split(',')[2]
+                vida = vida.replace(' ', '')
+                vida = vida.replace('vidas', '')
+                if int(vida)==0:
+                    return 1
+
+                return int(vida)
+
+def selec_pistas(dificultad):
+    with open('dificultad.txt', 'r') as d:
+        for line in d:
+            if line.split(',')[0] == dificultad:
+                pistas = line.split(',')[3]
+                pistas = pistas.replace(' ', '')
+                pistas = pistas.replace('pistas', '')
+                return int(pistas)

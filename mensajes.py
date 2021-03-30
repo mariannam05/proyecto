@@ -36,7 +36,7 @@ instrucciones = ('''%s
         › r = seleccionar el objeto de la derecha de la sala
         › l = seleccionar el objeto de la izquierda de la sala
         › c = seleccionar el objeto del centro de la sala
-        › ENTER: regresar a la sala principal (ojo: si estas en una sala principal y pulsas enter no harás nada)
+        › f: regresar a la sala principal (ojo: si estas en una sala principal y pulsas enter no harás nada)
 %s''')
 
 narrativa1 = '''
@@ -51,7 +51,15 @@ presiona los siguientes comandos para moverte:
 r = ir a la derecha de la sala
 l = ir a la izquierda de la sala
 c = ir al centro de la sala
-ENTER: regresar a la sala principal
+f = regresar a la sala principal
+'''
+
+comandos_saman ='''
+presiona los siguientes comandos para moverte:
+r = ir a la derecha de la sala
+l = ir a la izquierda de la sala
+c = ir al centro de la sala
+b = si quieres volver a la biblioteca
 '''
 
 direccion = '¿Qué quieres hacer? →'

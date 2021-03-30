@@ -16,13 +16,11 @@ jugadores = []      #lista para guardar a los jugadores cuando se registren
 
 jugadores = recibir_datos_del_txt('jugadores.txt', jugadores)       #para guardar los usuarios registrados para siempre en la base de datos
 
-#api
-import requests
-url = "https://api-escapamet.vercel.app/"
-response = requests.get(url)
-info_rooms = response.json()
-print(info_rooms)
 
+
+
+
+#el documento de player.txt lo cree para probarlo ya en el momento final con los usuarios vacios
 
 print('%s¡¡BIENVENIDO AL MEJOR JUEGO DE LA UNIMET!! %s' % (fg(3), attr(0)))     #inicio del juego
 while True:
@@ -32,24 +30,42 @@ while True:
         print('No seas asi, ingresa una opcion válida 🙄 : ')
     
     if int(menu) == 1:
+        #inicio de la partida pero primero registro y verificacion
         print(mensajes.msg_registrado)
         opc= input('==> ')
         while (int(opc) not in range(1,3)) and (not opc.isnumeric()):
             print('No seas asi, ingresa una opcion válida 🙄 : ')
         if int(opc) == 1:
             print(mensajes.msg_registro1)
-            jugadores=registro_jugador(jugadores)
+            jugadores = registro_jugador(jugadores)
             cargar_datos_en_txt('jugadores.txt', jugadores)
-            print('\n')
+            jugador_activo= jugadores[-1]
+            # print('\n')
+            # decide = input('¿Quieres comenzar?: (s/n)')
+            # while not (decide.isalpha) or (decide == 'r' or decide=='n'):
+            #     decide = input("%sPor favor ingrese un valor válido (s/n): %s"% (fg(1), attr(0)))
+            # if decide == 'n': 
+            #     continue
+            # elif decide == 's':
             # comenzar_juego(jugadores)
-            # AQUI ES DONDE DEBES VERIFICAR Y HACER UNA FUNCION LLAMADA DIFICULTAD donde DECIDES ESO
-
         elif int(opc) ==2:
             # verificar que si este registrado
             if len(jugadores) == 0:
                 print("Todavía no hay jugadores registrados.")
             else:
                 buscar_jugador(jugadores)
+
+        # while jugador_activo != None:
+        #     dificultad = elige_dificultad()
+        #     tiempo = selec_tiempo()
+        #     vidas = selec_vida()
+        #     pistas = selec_pistas()
+
+        #     jugador_activo = Player(jugador_activo.username, )
+
+
+
+
     elif int(menu)== 2:
         print('\n')
         print('------------------------')

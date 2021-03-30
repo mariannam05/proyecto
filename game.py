@@ -3,15 +3,64 @@ import os
 import mensajes
 from Cuartos import Cuartos
 from Biblioteca import Biblioteca
+from Saman import Saman
+from room_biblioteca import *
 from room_saman import *
 
-#datos de ubicacion de la biblioteca con herencia 
-
-# obj_izq= 'mueble para sentarse'
-# obj_der = 'mueble de libros pequeño'
-# obj_cen = 'mueble de biblioteca'
-# game = 3
-# ubi = 0
+def func_saman(nuevo_jugador):
+    obj_izq= 'Banco para sentarse 1'
+    obj_der = 'Banco para sentarse 2'
+    obj_cen = 'Saman'
+    game = 3
+    ubi = 0
+    sam = Saman(obj_izq,obj_der,obj_cen,ubi, game)
+    
+    while True:
+        print(sam.mostrar())
+        print(imagenes.saman)
+        print(mensajes.comandos_saman)
+        seleccion = input(mensajes.direccion).lower()
+        while not (seleccion == 'l' or seleccion == 'c' or seleccion == 'r' or seleccion == 'b'):
+                    print('Lo que ingresaste en esta sala no es válido, asi que elige otra opción')
+                    seleccion = input(mensajes.direccion).lower()
+        os.system('clear')
+        if seleccion == 'r':
+            while True:
+                print(imagenes.banco)
+                seleccion = input('este parece ser un banquito común, pero hay un juego aqui!, escribe (c) si quieres jugar o (f) para regresar: ').lower()
+                while not (seleccion == 'c' or seleccion== 'f'):  
+                    seleccion = input('En esta sala solo puedes seleccionar el mueble, la puerta o regresar, asi que selecciona una opcion válida: ').lower()
+                if seleccion == 'f':
+                    os.system('clear')
+                    break
+                # elif seleccion == 'c':
+                #     #inicio del minijuego
+                    
+        elif seleccion == 'l':
+            while True:
+                print(imagenes.banco)
+                seleccion = input('este parece ser un banquito común, pero hay un juego aqui!, escribe (c) si quieres jugar o (f) para regresar: ').lower()
+                while not (seleccion == 'c' or seleccion== 'f'):  
+                    seleccion = input('En esta sala solo puedes seleccionar el mueble, la puerta o regresar, asi que selecciona una opcion válida: ').lower()
+                if seleccion == 'f':
+                    os.system('clear')
+                    break
+                # elif seleccion == 'c':
+                #     #inicio del minijuego
+        elif seleccion == 'c':
+            while True:
+                print(imagenes.saman)
+                seleccion = input('Aqui esta frente a ti el famoso saman de la unimet y tiene algo especial... Hay un juego aqui!, escribe (c) si quieres jugar o (f) para regresar: ').lower()
+                while not (seleccion == 'c' or seleccion== 'f'):  
+                    seleccion = input('En esta sala solo puedes seleccionar el mueble, la puerta o regresar, asi que selecciona una opcion válida: ').lower()
+                if seleccion == 'f':
+                    os.system('clear')
+                    break
+                # elif seleccion == 'c':
+                #     #inicio del minijuego
+        else: 
+            func_biblioteca(nuevo_jugador)
+        os.system('clear')
 
 
 def func_biblioteca(nuevo_jugador):
@@ -64,7 +113,7 @@ def func_biblioteca(nuevo_jugador):
         elif seleccion == 'l':
             while True:
                 print(imagenes.mueble_sentarse)
-                seleccion = input('Aqui tienes el mueble para que tomes una siestica y la puerta que va al saman, escribe (r) para seleccionar el mueble, (l) para intentar abrir la puerta o (f) para regresar:').lower()
+                seleccion = input('Aqui tienes el mueble para que tomes una siestica y la puerta que va al saman, escribe (r) para seleccionar el mueble, (l) para ir al saman o (f) para regresar:').lower()
                 while not (seleccion == 'r' or seleccion == 'l' or seleccion == 'f'):  
                     seleccion = input('En esta sala solo puedes seleccionar el mueble, la puerta o regresar, asi que selecciona una opcion válida: ').lower()
                 if seleccion == 'r':
@@ -97,4 +146,3 @@ def func_biblioteca(nuevo_jugador):
                     os.system('clear')
                     break
         os.system('clear')
-
