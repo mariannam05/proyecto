@@ -1,38 +1,12 @@
-#api
-# import requests
-# url = "https://api-escapamet.vercel.app/"
-# response = requests.get(url)
-# info_rooms = response.json()
-
-questions=[
-{
-"question": "Soy alta cuando soy joven y baja cuando soy vieja. ¿Qué soy yo?",
-"answers": ["una vela","vela","Vela","la Vela","La Vela"],
-"clue_1": "lo usas cuando se va la luz",
-"clue_2": "lo puedes prender con un encendedor",
-"clue_3": "es de cera"
-},
-{
-"question": "Es pequeño como una pera, pero alumbra la casa entera. ¿Qué soy yo?",
-"answers": ["un bombillo","bombillo","El Bombillo","el bombillo","Bombillo"],
-"clue_1": "lo usas cuando hay luz",
-"clue_2": "gracias a estar encendido puedes leer",
-"clue_3": "se coloca en las lámparas"
-},
-{
-"question": "Oro parece y plata no es, y no lo adivinas de aquí a un mes ¿Qué soy yo?",
-"answers": ["un platano","platano","El Platano","Platano","plátano","Plátano"],
-"clue_1": "fruta",
-"clue_2": "POTASIO",
-"clue_3": "parecido al cambur"
-}]
-
+from api import *
 from random import randrange, choice
 
 eleccion = choice(["adivinanza1", "adivinanza2", "adivinanza3"])
 intentos = 1
 aciertos = 0
 p = 0 #cant de pistas usadas
+questions = datos_adivinanza
+
 if eleccion == 'adivinanza1':
     adivinanza1 = questions[0]
     pregunta1 = adivinanza1["question"]

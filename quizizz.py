@@ -1,36 +1,12 @@
-questions=[
-{
-"question": "¿En qué fecha es el Aniversario de la Universidad Metropolitana?",
-"correct_answer": "22 de octubre",
-"answer_2": "22 de septiembre",
-"answer_3": "25 de octubre",
-"answer_4": "25 de septiembre",
-"clue_1": "es en octubre"
-},
-{
-"question": "¿En qué año fue Fundada la Universidad Metropolitana?",
-"correct_answer": "1970",
-"answer_2": "1969",
-"answer_3": "1980",
-"answer_4": "1979",
-"clue_1": "termina en 0 el año"
-},
-{
-"question": "¿Quién fundó la Unimet?",
-"correct_answer": "Eugenio Mendoza",
-"answer_2": "Rafael Matiezo",
-"answer_3": "Lorenzo Mendoza",
-"answer_4": "Luis Miguel Da Gama",
-"clue_1": "tiene una estatua"
-}
-]
-
-
+from api import *
 from random import randrange, choice
+
+
 eleccion = choice(["quizizz1", "quizizz2", "quizizz3"])
 intentos = 1
 aciertos = 0
 p = 0 #son pistas
+questions = datos_quizizz
 
 if eleccion == 'quizizz1':
     quizizz1 = questions[0]
