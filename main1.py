@@ -27,9 +27,10 @@ Aqui ves las opciones de lo que puedes hacer:
     2. ¿De que trata este juego?
     3. ¡Records!
 '''))
-    menu = input('Ahora cuentame, ¿Qué quieres hacer?: \n ==> ')
-    while (int(menu) not in range(1,4)) and (not menu.isnumeric()):
+    menu = input('Ahora cuentame, ¿Qué quieres hacer?: \n ==> ')        #validar aqui
+    while not (int(menu)!= 1 or int(menu)!= 2 or int(menu)!= 3):
         print('No seas asi, ingresa una opcion válida 🙄 : ')
+        menu = input('¿Qué quieres hacer? (1/2/3): \n ==> ')
     
     if int(menu) == 1:
         #inicio de la partida pero primero registro y verificacion
@@ -75,42 +76,43 @@ Vamos a registrarte para comenzar la aventura:
             Bienvenido {jugador.username}...
             Hoy 5 de marzo de 2021, la Universidad sigue en cuarentena (esto no es novedad), lo que sí es novedad es que se robaron un Disco Duro de la Universidad
             del cuarto de redes que tiene toda la información de SAP de estudiantes, pagos y  asignaturas. Necesitamos que nos ayudes a recuperar el disco,
-            para eso tienes {jugador.dificultad} minutos, antes de que el servidor se caiga y no se pueda hacer más nada. ¿Aceptas el reto? (s/n)
+            para eso cuentas con una cierta cantidad de tiempo antes de que el servidor se caiga y no se pueda hacer más nada. ¿Aceptas el reto? (s/n)
             ''')
             reto = input('→ ')
             while not (reto == 's' or reto == 'n'):
                 reto = input("%sPor favor ingrese un valor válido (s/n): %s"% (fg(1), attr(0)))
-            if reto == 'n':
+
+            while reto == 'n':
                 reto = input("No te creo, asi que esperare que lo razones bien y digas que si (vamos por favor, es por una buena causa): ")
-            else: 
-                #comienza el juego
+            
+            #comienza el juego
+            #comienza el tiempo
+            tiempo_limite = playtime * 60
+            comenzar_tiempo = time.time() #para comenzar el tiempo
+            fin_tiempo = comenzar_tiempo + tiempo_limite
+
+            while True:
+                tiempo_past = time.time() - comenzar_tiempo
+                tiempo_restante = round((tiempo_limite - tiempo_past)/60)
+
+                if  int(jugador.vidas) <= 0:
+                    print('Oh no, te quedaste sin vidas 😭')            #revisar el por que si pierdo todas las vidas no se detiene el juego
+                    print('%sGAME OVER%s' %(fg(1), attr(0)))
+                    jugador_activo = None
+                    break
+
+                elif time.time() > fin_tiempo:
+                    print('Oh no, se te agotó el tiempo 😭')
+                    print('%sGAME OVER%s' %(fg(1), attr(0)))
+                    jugador_activo = None
+                    break
+                
                 #segunda narrativa
                 print(f'''
                 Bienvenido {jugador.avatar}, gracias por tu disposición a ayudarnos a resolver este inconveniente,  te encuentras actualmente ubicado en la biblioteca, 
                 revisa el menú de opciones para ver qué acciones puedes realizar. Recuerda que el tiempo corre más rápido que un trimestre en este reto.
                 ''')
-
-                #comienza el tiempo
-                tiempo_limite = playtime * 60
-                comenzar_tiempo = time.time() #para comenzar el tiempo
-                fin_tiempo = comenzar_tiempo + tiempo_limite
-                while True:
-                    tiempo_past = time.time() - comenzar_tiempo
-                    tiempo_restante = round((tiempo_limite - tiempo_past)/60)
-
-                    if time.time() > fin_tiempo:
-                        print('Oh no, se te agotó el tiempo 😭')
-                        print('%sGAME OVER%s' %(fg(1), attr(0)))
-                        jugador_activo = None
-                        break
-
-                    if jugador.vidas == 0:
-                        print('Oh no, te quedaste sin vidas 😭')
-                        print('%sGAME OVER%s' %(fg(1), attr(0)))
-                        jugador_activo = None
-                        break
-
-                    play(jugador, tiempo_restante)
+                play(jugador, tiempo_restante)      #revisar por que no se va descontando el tiempo
 
 
     elif int(menu)== 2:

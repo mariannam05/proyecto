@@ -1,63 +1,63 @@
 from api import *
 from random import randrange, choice
+
 #funcion de juego de logica booleana que esta en el pasillo de los laboratorios
-def logica_booleana_game():
-    eleccion = choice(["p1", "p2"])
-    intentos = 1
-    aciertos = 0
-    questions = datos_logica
+def logica_booleana_game(jugador):
+    '''
+    Juego Lógica Booleana
+    Recibe: Diccionario del juego y objeto jugador
+    Devuelve: True cuando el usuario complete el juego
+    '''
 
-    if eleccion == 'p1':
-        p1 = questions[0]
-        pregunta1 = p1['question']
-        respuesta1 = p1['answer']
-        print(f'''
-    Pregunta: {pregunta1}
-    Respuesta: ''')
-        respuesta = input('→ ')
-        while not respuesta.isalpha:
-            print('Ingresaste datos invalidos, intentalo otra vez')
-            respuesta = input('→ ')
+    #"message_requirement": "Está cerrado con candado!!!!!",
+    #"requirement": "martillo",
+    #"name": "Lógica Booleana",
+    #"award": "libro de Física",
+    #"rules": "pierde media vida por opción incorrecta",
+    
+    game = juego_booleana
+    quiz = choice(game['questions']) #escoge un diccionario de la lista aleatoriamente
+    requerido = game['requirement']
+    recompensa = game['award']
+    reglas = game['rules']
 
-        while True:
-            if respuesta == respuesta1:
-                aciertos = aciertos + 1
-                print('\n')
-                print('¡Tu respuesta es correcta!')
-                print (f"Felicitaciones! Adivinaste la palabra en {intentos} intentos.")
-                break
-            else:
-                intentos = intentos + 1
-                aciertos = 0
-                print('\n')
-                print('Tu respuesta es incorrecta')
-                respuesta = input('→ ')
-    elif eleccion == 'p2':
-        p2 = questions[1]
-        pregunta2 = p2['question']
-        respuesta2 = p2['answer']
-        print(f'''
-    Pregunta: {pregunta2}
-    Respuesta: ''')
-        respuesta = input('→ ')
-        while not respuesta.isalpha:
-            print('Ingresaste datos invalidos, intentalo otra vez')
-            respuesta = input('→ ')
+    print(f'Para jugar necesitas tener en tu inventario {requerido}!!')
+    print(f'Estas son las reglas del juego: {reglas}')
+    print(f'La recomensa de este juego es: {recompensa}')
 
-        while True:
-            if respuesta == respuesta2:
-                aciertos = aciertos + 1
-                print('\n')
-                print('¡Tu respuesta es correcta!')
-                print (f"Felicitaciones! Adivinaste la palabra en {intentos} intentos.")
-                break
-            else:
-                intentos = intentos + 1
-                aciertos = 0
-                print('\n')
-                print('Tu respuesta es incorrecta, recuerda el buen uso de las mayusculas en la lógica!')
-                respuesta = input('→ ')
+    pregunta = quiz['question']
+    respuesta1 = quiz['answer']
+    respuesta2 = lambda x: 'True' if x == 'False' else 'False'
+
+    print(f'''Pregunta: {pregunta}
+    
+    a) {respuesta2(respuesta1)}
+    b) {respuesta1}
+    Respuesta:
+    ''')
+    r = input('(a/b)→ ').lower()
+    while r != 'a' and r != 'b':
+        print('Ingresaste datos invalidos, intentalo otra vez')
+        r = input('(a/b)→ ').lower()
+        
+    while True:
+        if r == 'b':
+            print('¡Tu respuesta es correcta!')
+            print (f"Felicitaciones! Haz ganado un {recompensa}, lo puedes ver en tu inventario!")
+            jugador.agregar_inv(recompensa)
+            salida = input('Escribe (f) para regresar: ')
+            while not salida == 'f':
+                salida = input('Por favor, escribe (f) para regresar: ')
+            os.system('clear')
+            break
+
+        else:
+            print('Tu respuesta es incorrecta')
+            jugador.quitar_vidas(1/2)
+        
 
 
 
 
+
+    

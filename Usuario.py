@@ -29,7 +29,9 @@ class Usuario(Player):
 
     def mostrar_atri(self):
         print(f'''
-        Vidas: {self.vidas}
-        Pistas: {self.pistas}
-        Inventario: {self.inventario}
+         ----------------------------------------------------------------------------
+         Vidas: {self.vidas}                                                        
+         Pistas: {self.pistas}                                                      
+         Inventario: {self.inventario}                                              
+         ----------------------------------------------------------------------------
         ''')

@@ -9,6 +9,8 @@ from room_saman import *
 from api import *
 from random import randrange, choice
 from quizizz import *
+from logica import *
+import main1 
 
 #mensajes
 comandos= '''
