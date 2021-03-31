@@ -69,20 +69,6 @@ def registro_jugador(jugadores):
     return jugadores
 
 
-# def ver_jugadores(jugadores):
-#     '''
-#     Con esta función se le aplica a todos los jugadores el método "mostrar" para imprimir de forma organizada sus atributos.
-
-#     Argumentos => jugadores: lista de jugadores ya registrados.
-
-#     Retorna: => para cada jugador se imprime el número de registro y seguidamente sus datos.
-
-#     '''
-#     for i,a in enumerate(jugadores):
-#         print("---",i+1,"---------------")
-#         a.mostrar()
-
-
 def buscar_jugador(jugadores):
     '''
     Con esta función verificamos si el jugador esta registrado o no en la base de datos, haciendo que ingresen el username y comprobado la contraseña.
@@ -92,17 +78,22 @@ def buscar_jugador(jugadores):
     Retorna: => si el username ingresado esta registrado o no.
 
     '''
-    j = input('Ingresa tu username: ')
+    jugadores = recibir_datos_del_txt('jugadores.txt', jugadores) 
+    jugador_activo = input('Ingresa tu username: ')
+
     for a in jugadores:
-        if a.username == j:
-            print(f'{j} si esta registrado!')
+        if a.username == jugador_activo:
+            print(f'{jugador_activo} si esta registrado!')
             clave = input('ingrese su contraseña: ')
             while not (clave == a.contraseña):
                 clave = input('CONTRASEÑA INCORRECTA, ingrese la contraseña nuevamente: ')
+                
             if a.contraseña == clave:
-                print(f'perfecto, si eres tu {j}!')
-                return j
-    print(f'El username {j}, no esta registrado todavía 🥴')
+                print(f'Perfecto, si eres tu {jugador_activo}!')
+                jugador_activo = a
+                return jugador_activo
+
+    print(f'El username {jugador_activo}, no esta registrado todavía 🥴')
     
 
 
@@ -137,14 +128,14 @@ def elige_dificultad():
     3. Dificil (solo para expertos)
     """)
     opcion = input("=> ")
-    while not (opcion==1 or opcion==2 or opcion==3):
+    while not (int(opcion)==1 or int(opcion)==2 or int(opcion)==3):
         opcion = input("%sPor favor ingrese un valor válido (1/2/3): %s"% (fg(1), attr(0)))
     
-    if opcion == 1:
+    if int(opcion) == 1:
         opcion = 'facil'
-    elif opcion == 2:
+    elif int(opcion) == 2:
         opcion = 'medio'
-    elif opcion == 3:
+    elif int(opcion) == 3:
         opcion = 'dificil'
 
     return opcion 

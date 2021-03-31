@@ -1,13 +1,35 @@
 import imagenes
 import os
-import mensajes
+from mensajes import *
 from Cuartos import Cuartos
 from Biblioteca import Biblioteca
 from Saman import Saman
 from room_biblioteca import *
 from room_saman import *
+from api import *
+from random import randrange, choice
+from quizizz import *
 
-def func_saman(nuevo_jugador):
+#mensajes
+comandos= '''
+presiona los siguientes comandos para moverte:
+r = ir a la derecha de la sala
+l = ir a la izquierda de la sala
+c = ir al centro de la sala
+f = regresar a la sala principal
+'''
+
+comandos_saman ='''
+presiona los siguientes comandos para moverte:
+r = ir a la derecha de la sala
+l = ir a la izquierda de la sala
+c = ir al centro de la sala
+b = si quieres volver a la biblioteca
+'''
+
+direccion = '¿Qué quieres hacer? →'
+
+def func_saman(jugador, tiempo_restante):
     obj_izq= 'Banco para sentarse 1'
     obj_der = 'Banco para sentarse 2'
     obj_cen = 'Saman'
@@ -17,12 +39,14 @@ def func_saman(nuevo_jugador):
     
     while True:
         print(sam.mostrar())
+        jugador.mostrar_atri()
+        print(f'Su tiempo restante es {tiempo_restante} minutos!')
         print(imagenes.saman)
-        print(mensajes.comandos_saman)
-        seleccion = input(mensajes.direccion).lower()
+        print(comandos_saman)
+        seleccion = input(direccion).lower()
         while not (seleccion == 'l' or seleccion == 'c' or seleccion == 'r' or seleccion == 'b'):
                     print('Lo que ingresaste en esta sala no es válido, asi que elige otra opción')
-                    seleccion = input(mensajes.direccion).lower()
+                    seleccion = input(direccion).lower()
         os.system('clear')
         if seleccion == 'r':
             while True:
@@ -33,8 +57,9 @@ def func_saman(nuevo_jugador):
                 if seleccion == 'f':
                     os.system('clear')
                     break
-                # elif seleccion == 'c':
-                #     #inicio del minijuego
+                elif seleccion == 'c':
+                    os.system('clear')
+                    quizizz_game(jugador)
                     
         elif seleccion == 'l':
             while True:
@@ -59,11 +84,11 @@ def func_saman(nuevo_jugador):
                 # elif seleccion == 'c':
                 #     #inicio del minijuego
         else: 
-            func_biblioteca(nuevo_jugador)
+            func_biblioteca(jugador, tiempo_restante)
         os.system('clear')
 
 
-def func_biblioteca(nuevo_jugador):
+def func_biblioteca(jugador, tiempo_restante):
     obj_izq= 'mueble para sentarse'
     obj_der = 'mueble de libros pequeño'
     obj_cen = 'mueble de biblioteca'
@@ -74,12 +99,14 @@ def func_biblioteca(nuevo_jugador):
     
     while doorClosed:
         print(biblio.mostrar())
+        jugador.mostrar_atri()
+        print(f'Su tiempo restante es {tiempo_restante} minutos!')
         print(imagenes.biblioteca)
-        print(mensajes.comandos)
-        seleccion = input(mensajes.direccion).lower()
+        print(comandos)
+        seleccion = input(direccion).lower()
         while not (seleccion == 'l' or seleccion == 'c' or seleccion == 'r'):
                     print('Lo que ingresaste en esta sala no es válido, asi que elige otra opción')
-                    seleccion = input(mensajes.direccion).lower()
+                    seleccion = input(direccion).lower()
         os.system('clear')
         if seleccion == 'r':
             while True:
@@ -125,7 +152,7 @@ def func_biblioteca(nuevo_jugador):
                         break
                 elif seleccion == 'l':
                     os.system('clear')
-                    func_saman(nuevo_jugador)
+                    func_saman(jugador, tiempo_restante)
                 else:
                     os.system('clear')
                     break
@@ -146,3 +173,7 @@ def func_biblioteca(nuevo_jugador):
                     os.system('clear')
                     break
         os.system('clear')
+
+
+def play(jugador, tiempo_restante):
+    func_biblioteca(jugador, tiempo_restante)

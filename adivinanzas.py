@@ -1,5 +1,6 @@
 from api import *
 from random import randrange, choice
+import os
 
 def adivinanzas_game():
     eleccion = choice(["adivinanza1", "adivinanza2", "adivinanza3"])
@@ -7,6 +8,7 @@ def adivinanzas_game():
     aciertos = 0
     p = 0 #cant de pistas usadas
     questions = datos_adivinanza
+    print('Este es un juego de adivinanzas, debes responder correctamente la pregunta!')
     
     if eleccion == 'adivinanza1':
         adivinanza1 = questions[0]
@@ -25,6 +27,7 @@ def adivinanzas_game():
                 aciertos = aciertos + 1
                 print('¡Tu respuesta es correcta!')
                 print (f"Felicitaciones! Adivinaste la palabra en {intentos} intentos y usaste {p} pistas.")
+                os.system('clear')
                 break
             else:
                 intentos = intentos + 1
@@ -78,6 +81,7 @@ def adivinanzas_game():
                 aciertos = aciertos + 1
                 print('¡Tu respuesta es correcta!')
                 print (f"Felicitaciones! Adivinaste la palabra en {intentos} intentos y usaste {p} pistas.")
+                os.system('clear')
                 break
             else:
                 intentos = intentos + 1
@@ -130,6 +134,7 @@ def adivinanzas_game():
                 aciertos = aciertos + 1
                 print('¡Tu respuesta es correcta!')
                 print (f"Felicitaciones! Adivinaste la palabra en {intentos} intentos y usaste {p} pistas.")
+                os.system('clear')
                 break
             else:
                 intentos = intentos + 1

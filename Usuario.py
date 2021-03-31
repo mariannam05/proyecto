@@ -1,12 +1,14 @@
 from Player import *
 class Usuario(Player):
-    def __init__(self, username, contraseña, edad, avatar, pistas, vidas, tiempo, win, inventario):
+    def __init__(self, username, contraseña, edad, avatar, pistas, vidas, tiempo, win, inventario, dificultad):
         self.pistas = pistas
         self.vidas = vidas
         self.tiempo = tiempo
         self.win = win
         self.inventario = inventario
-        super().__init__(self, username, contraseña, edad, avatar)
+        self.dificultad = dificultad
+        Player.__init__(self, username, contraseña, edad, avatar)
+        
 
     def agregar_inv(self, object):
         self.inventario.append(object)

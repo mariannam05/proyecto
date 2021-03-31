@@ -1,13 +1,15 @@
 from api import *
+import os
 from random import randrange, choice
 #funcion de juego de quizizz que esta en el banco 1 del saman 
-def quizizz_game():
+
+def quizizz_game(jugador):
     eleccion = choice(["quizizz1", "quizizz2", "quizizz3"])
     intentos = 1
     aciertos = 0
     p = 0 #son pistas
     questions = datos_quizizz
-
+    print('Este es un juego de Quizizz (ya tuviste suficiente preparacion durante todo el trimestre), debes responder correctamente la pregunta!')
     if eleccion == 'quizizz1':
         quizizz1 = questions[0]
         pregunta1 = quizizz1["question"]
@@ -29,20 +31,27 @@ def quizizz_game():
         while True:
             if respuesta== 'a':
                 aciertos = aciertos + 1
+                jugador.inventario.append('martillo')
                 print('¡Tu respuesta es correcta!')
                 print (f"Felicitaciones! Adivinaste la respuesta en {intentos} intentos y usaste {p} pistas.")
+                print('Haz ganado un Martillo, lo puedes ver en tu inventario!')
+                os.system('clear')
                 break
             else:
                 intentos = intentos + 1
                 aciertos = 0
                 print('Tu respuesta es incorrecta')
-                pistas = input('¿Quieres usar una pista?(s/n): ')
-                if pistas == 's':
-                    p = p + 1
-                    print(pista1)
-                    respuesta = input('→ ')
-                else:
-                    respuesta = input('→ ')
+                while not jugador.pistas == 0:
+                    pistas = input('¿Quieres usar una pista?(s/n): ')
+                    if pistas == 's':
+                        p = p + 1
+                        jugador.pistas = jugador.pistas - 1
+                        print(pista1)
+                        respuesta = input('→ ')
+                    else:
+                        respuesta = input('→ ')
+                print('No tienes mas pistas, sigue intentando...')
+                respuesta = input('→ ')
     elif eleccion == 'quizizz2':
         quizizz2 = questions[1]
         pregunta2 = quizizz2["question"]
@@ -64,20 +73,29 @@ def quizizz_game():
         while True:
             if respuesta== 'd':
                 aciertos = aciertos + 1
+                jugador.inventario.append('martillo')
                 print('¡Tu respuesta es correcta!')
                 print (f"Felicitaciones! Adivinaste la respuesta en {intentos} intentos y usaste {p} pistas.")
+                print('Haz ganado un Martillo, lo puedes ver en tu inventario!')
+                os.system('clear')
                 break
             else:
-                intentos = intentos + 1
+                intentos = intentos + 1         #revisar los intentos en esta pregunta pero si te quita las pistas todo bien solo eso!
                 aciertos = 0
                 print('Tu respuesta es incorrecta')
-                pistas = input('¿Quieres usar una pista?(s/n): ')
-                if pistas == 's':
-                    p = p + 1
-                    print(pista2)
-                    respuesta = input('→ ')
-                else:
-                    respuesta = input('→ ')
+                while not jugador.pistas == 0:
+                    pistas = input('¿Quieres usar una pista?(s/n): ')
+                    if pistas == 's':
+                        p = p + 1
+                        jugador.pistas = jugador.pistas - 1
+                        print(pista2)
+                        respuesta = input('→ ')
+                    else:
+                        respuesta = input('→ ')
+                print('No tienes mas pistas, sigue intentando...')
+                respuesta = input('→ ')
+                
+            
     elif eleccion == 'quizizz3':
         quizizz3 = questions[2]
         pregunta3 = quizizz3["question"]
@@ -99,17 +117,24 @@ def quizizz_game():
         while True:
             if respuesta== 'b':
                 aciertos = aciertos + 1
+                jugador.inventario.append('martillo')
                 print('¡Tu respuesta es correcta!')
                 print (f"Felicitaciones! Adivinaste la respuesta en {intentos} intentos y usaste {p} pistas.")
+                print('Haz ganado un Martillo, lo puedes ver en tu inventario!')
+                os.system('clear')
                 break
             else:
                 intentos = intentos + 1
                 aciertos = 0
                 print('Tu respuesta es incorrecta')
-                pistas = input('¿Quieres usar una pista?(s/n): ')
-                if pistas == 's':
-                    p = p + 1
-                    print(pista3)
-                    respuesta = input('→ ')
-                else:
-                    respuesta = input('→ ')
+                while not jugador.pistas == 0:
+                    pistas = input('¿Quieres usar una pista?(s/n): ')
+                    if pistas == 's':
+                        p = p + 1
+                        jugador.pistas = jugador.pistas - 1
+                        print(pista3)
+                        respuesta = input('→ ')
+                    else:
+                        respuesta = input('→ ')
+                print('No tienes mas pistas, sigue intentando...')
+                respuesta = input('→ ')
