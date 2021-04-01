@@ -76,6 +76,24 @@ ___|||___________________________|||___|__________________|____
 '''
 #la puerta a los laboratorios esta dibujada como mueble pequeño ya que esta con ese 
 
+puerta_laboratorio = '''
+             
+                _____________________
+                |   --------------  |
+                |   |LABORATORIOS|  |
+                |   --------------  |
+                |                   |
+                |                   |
+                |                   |
+                |                 O |
+                |                   |
+                |                   |
+                |                   |
+                |                   |
+                |                   |
+                |                   |
+________________|___________________|__________________
+'''
 
 # laboratorio:
 #izq: computadora 1 y puerta a la biblioteca

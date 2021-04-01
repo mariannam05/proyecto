@@ -3,8 +3,13 @@ import os
 from mensajes import *
 from Cuartos import Cuartos
 from Biblioteca import Biblioteca
+from Servidores import Servidores
+from Laboratorio import Laboratorio
 from Saman import Saman
 from room_biblioteca import *
+from room_lab import *
+from room_servidores import *
+from room_pasillo_laboratorio import *
 from room_saman import *
 from api import *
 from random import randrange, choice
@@ -32,7 +37,235 @@ c = ir al centro de la sala (⇫)
 b = si quieres volver a la biblioteca (⇳)
 '''
 
+comandos_lab ='''
+presiona los siguientes comandos para moverte:
+r = ir a la computadora 2 (⇨)
+l = ir a la computadora 1 (⇦)
+c = ir al centro de la sala (⇫)
+a = si quieres volver al pasillo (⇳)
+s = si quieres ir al cuarto de servidores (⇳)
+'''
+
+comandos_serv ='''
+presiona los siguientes comandos para moverte:
+r = ir a la papelera (⇨)
+l = ir al Rack (⇦)
+c = ir al centro de la sala (⇫)
+a = si quieres volver al laboratorio (⇳)
+'''
+comandos_puerta ='''
+presiona los siguientes comandos para moverte:
+a = si quieres ir a los laboratorios (⇨)
+b = si quieres volver a la biblioteca (⇦)
+c = jugar (⇫)
+f = regresar (⇳)
+'''
 direccion = '¿Qué quieres hacer? →'
+
+def func_servidores(jugador, tiempo_restante):
+    obj_izq= 'Rack'
+    obj_der = 'papelera'
+    obj_cen = 'puerta'
+    ubi = 0
+    game = 3
+    serv = Servidores(obj_izq, obj_der, obj_cen, ubi, game)
+    while True:
+        print(serv.mostrar())
+        jugador.mostrar_atri()
+        print(f'Su tiempo restante es {tiempo_restante} minutos!')
+        print(imagenes.servidores)
+        print(comandos_serv)
+        seleccion = input(direccion).lower()
+        while not (seleccion == 'l' or seleccion == 'c' or seleccion == 'r' or seleccion == 'a'):
+                    print('Lo que ingresaste en esta sala no es válido, asi que elige otra opción')
+                    seleccion = input(direccion).lower()
+        os.system('clear')
+
+        if seleccion == 'r':
+            while True:
+                print(imagenes.papelera)
+                seleccion = input('Hay un juego aqui!, escribe (c) si quieres jugar o (f) para regresar: ')
+                while not (seleccion == 'c' or seleccion== 'f'):  
+                    seleccion = input('Por favor selecciona una opcion válida (c/f): ').lower()
+                if seleccion == 'f':
+                    os.system('clear')
+                    break
+                # elif seleccion == 'c':
+                #     os.system('clear')
+                #     #inicio del minijuego   #juego de Palabra mezclada
+                           
+        elif seleccion == 'l':
+            while True:
+                print(imagenes.rack)
+                seleccion = input('Hay un juego aqui!, escribe (c) si quieres jugar o (f) para regresar: ')
+                while not (seleccion == 'c' or seleccion== 'f'):  
+                    seleccion = input('Por favor selecciona una opcion válida (c/f): ').lower()
+                if seleccion == 'f':
+                    os.system('clear')
+                    break
+                elif seleccion == 'c':
+                    print('Debes tener la contraseña:')
+                    contraseña = input('''
+                    Ingrese la contraseña aqui: ''')
+                    if not contraseña == 'contraseña':
+                        print("%sContraseña Incorrecta: %s"% (fg(1), attr(0)))
+                        seleccion = input('escribe (f) para regresarte e intentarlo nuevamente:')
+                        while not seleccion == 'f':
+                            seleccion = input('Escribe un caracter válido (f): ')
+                        os.system('clear')
+                        break
+                    # else:
+                    #     os.system('clear')
+                    #     #inicio del minijuego   #juego de Palabra mezclada
+
+        elif seleccion == 'c':
+            while True:
+                print(imagenes.puerta_salida)
+                seleccion = input('Aqui solo tienes la puerta de salida, y tiene un juego! escribe (c) para jugar o (f) para regresar:').lower()  
+                while not (seleccion == 'c' or seleccion == 'f'):  
+                    seleccion = input('En esta sala solo puedes seleccionar el mueble de libros para jugar o regresarte, asi que selecciona una opcion válida: ').lower()
+                if seleccion == 'c':
+                    requisito = 'carnet'
+                    print(f'Debes tener un {requisito} para poder jugar este juego')
+                    if not requisito in jugador.inventario:
+                        print(f'No tienes el {requisito} en tu inventario, asi que debes regresarte a conseguirlo')
+                        seleccion = input('escribe (f):')
+                        while not seleccion == 'f':
+                            seleccion = input('Escribe un caracter válido (f): ')
+                        os.system('clear')
+                        break
+                    # else:
+                    #     os.system('clear')
+                    #     #inicio del minijuego   #juego de libre #Parar el cronómetro y ganar el juego   #si pierdes, vas perdiendo una vida completa
+                elif seleccion == 'f':
+                    os.system('clear')
+                    break
+
+        elif seleccion == 'a':
+            os.system('clear')
+            func_lab(jugador, tiempo_restante)
+        os.system('clear')
+
+def func_lab(jugador, tiempo_restante):
+    #datos de ubicacion del laboratorio 
+    obj_izq= 'computadora 1'
+    obj_der = 'computadora 2'
+    obj_cen = 'pizarra'
+    ubi = 0
+    game = 3
+    lab = Laboratorio(obj_izq, obj_der, obj_cen, ubi, game)
+    while True:
+        print(lab.mostrar())
+        jugador.mostrar_atri()
+        print(f'Su tiempo restante es {tiempo_restante} minutos!')
+        print(imagenes.laboratorio)
+        print(comandos_lab)
+        seleccion = input(direccion).lower()
+        while not (seleccion == 'l' or seleccion == 'c' or seleccion == 'r' or seleccion == 'a' or seleccion == 's'):
+                    print('Lo que ingresaste en esta sala no es válido, asi que elige otra opción')
+                    seleccion = input(direccion).lower()
+        os.system('clear')
+
+        if seleccion == 'r':
+            while True:
+                print(imagenes.computadora2)
+                seleccion = input('Hay un juego aqui!, escribe (c) si quieres jugar o (f) para regresar: ')
+                while not (seleccion == 'c' or seleccion== 'f'):  
+                    seleccion = input('Por favor selecciona una opcion válida (c/f): ').lower()
+                if seleccion == 'f':
+                    os.system('clear')
+                    break
+                elif seleccion == 'c':
+                    print('Debes tener la contraseña:')
+                    contraseña = input('''
+                    Ingrese la contraseña aqui: ''')
+                    if not contraseña == 'contraseña':
+                        print("%sContraseña Incorrecta: %s"% (fg(1), attr(0)))
+                        seleccion = input('escribe (f) para regresarte e intentarlo nuevamente:')
+                        while not seleccion == 'f':
+                            seleccion = input('Escribe un caracter válido (f): ')
+                        os.system('clear')
+                        break
+                    else:
+                        os.system('clear')
+                        adivinanzas_game(jugador)   #juego de logica booleana#inicio del minijuego
+                           
+        elif seleccion == 'l':
+            while True:
+                print(imagenes.computadora1)
+                seleccion = input('Hay un juego aqui!, escribe (c) si quieres jugar o (f) para regresar: ')
+                while not (seleccion == 'c' or seleccion== 'f'):  
+                    seleccion = input('Por favor selecciona una opcion válida (c/f): ').lower()
+                if seleccion == 'f':
+                    os.system('clear')
+                    break
+                elif seleccion == 'c':
+                    requisito = 'cable HDMI'
+                    print(f'Debes tener un {requisito} para poder jugar este juego')
+                    if not requisito in jugador.inventario:
+                        print(f'No tienes el {requisito} en tu inventario, asi que debes regresarte a conseguirlo')
+                        seleccion = input('escribe (f):')
+                        while not seleccion == 'f':
+                            seleccion = input('Escribe un caracter válido (f): ')
+                        os.system('clear')
+                        break
+                    # else:
+                    #     os.system('clear')
+                    #     #inicio del minijuego   #juego de Preguntas sobre python
+
+        elif seleccion == 'c':
+            while True:
+                print(imagenes.pizarra)
+                seleccion = input('Aqui solo tienes la pizarra, y tiene un juego! escribe (c) para jugar o (f) para regresar:').lower()  
+                while not (seleccion == 'c' or seleccion == 'f'):  
+                    seleccion = input('En esta sala solo puedes seleccionar el mueble de libros para jugar o regresarte, asi que selecciona una opcion válida: ').lower()
+                if seleccion == 'c':
+                    seleccion = input('Hay un juego aqui!, escribe (c) si quieres jugar o (f) para regresar: ')
+                    while not (seleccion == 'c' or seleccion== 'f'):  
+                        seleccion = input('Por favor selecciona una opcion válida (c/f): ').lower()
+                    if seleccion == 'f':
+                        os.system('clear')
+                        break
+                    # else:
+                    #     os.system('clear')
+                    #     #inicio del minijuego          #juego de sopa  de letras
+                else:
+                    os.system('clear')
+                    break
+        elif seleccion == 'a':
+            os.system('clear')
+            func_pasillo_laboratorio(jugador, tiempo_restante)
+
+        elif seleccion == 's':
+            os.system('clear')
+            func_servidores(jugador, tiempo_restante)
+        os.system('clear')
+
+def func_pasillo_laboratorio(jugador, tiempo_restante):
+    while True:
+        print('''
+    Nombre del cuarto: Pasillo laboratorio
+        ''')
+        jugador.mostrar_atri()
+        print(f'Su tiempo restante es {tiempo_restante} minutos!')
+        print(imagenes.puerta_laboratorio)
+        print(comandos_puerta)
+        seleccion = input('Hay un juego aqui!, escribe (c) si quieres jugar, (f) para regresar, (a) para avanzar a los laboratorios o (b) para volver a la biblioteca: ')
+        while not (seleccion == 'c' or seleccion== 'f' or seleccion== 'a' or seleccion== 'b'):  
+            seleccion = input('Por favor selecciona una opcion válida (c/f/a/b): ').lower()
+        if seleccion == 'f':
+            os.system('clear')
+            break
+        elif seleccion == 'c':
+            os.system('clear')
+            logica_game(jugador)   #juego de logica booleana
+        elif seleccion == 'a':
+            os.system('clear')
+            func_lab(jugador, tiempo_restante) 
+        elif seleccion == 'b':
+            os.system('clear')
+            func_biblioteca(jugador, tiempo_restante) 
+
 
 def func_saman(jugador, tiempo_restante):
     obj_izq= 'Banco para sentarse 1'
@@ -141,19 +374,19 @@ def func_biblioteca(jugador, tiempo_restante):
                     #     #inicio del minijuego             #juego de criptograma
 
                 elif seleccion == 'r':
-                    #va asi porque todavia  no he creado el inventario con la llave en DoorClosed = True
-                    requisito = 'llave'
-                    print(f'Necesitas tener {requisito} en tu inventario para poder abrir la puerta')
-                    if not requisito in jugador.inventario:
-                        print('La puerta esta cerrada asi que regresate')
-                        seleccion = input('escribe f:')
-                        while not seleccion == 'f':
-                            seleccion = input('Escribe un caracter válido (f): ')
-                        os.system('clear')
-                        break
+                    # requisito = 'Martillo'
+                    # print(f'Necesitas tener {requisito} en tu inventario para poder abrir la puerta')
+                    # if not requisito in jugador.inventario:
+                    #     print('La puerta esta cerrada asi que regresate')
+                    #     seleccion = input('escribe f:')
+                    #     while not seleccion == 'f':
+                    #         seleccion = input('Escribe un caracter válido (f): ')
+                    #     os.system('clear')
+                    #     break
                     # else:
-                    #     print(f'¡Perfecto! tienes la {requisito}, puedes entrar al pasillo de los laboratorios')    #en el pasillo de los laboratorios esta el otro juego
-                    #     func_pasillo_laboratorio(jugador, tiempo_restante)
+                    # print(f'¡Perfecto! tienes el {requisito} para romper el candado, puedes entrar al pasillo de los laboratorios')    #en el pasillo de los laboratorios esta el otro juego
+                    os.system('clear')
+                    func_pasillo_laboratorio(jugador, tiempo_restante)
                 elif seleccion == 'f':
                     os.system('clear')
                     break
