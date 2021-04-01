@@ -50,6 +50,10 @@ juego_ahorcado = mueble_libros_dic['game']
 #juego de logica con dibujos en Plaza rectorado en Saman (Centro)
 juego_dibujos = saman_dic['game']
 
+#juego de criptograma en Biblioteca Mueble pequeño 
+juego_criptograma = mueble_pequeño_dic['game']
+
+
 
 
 

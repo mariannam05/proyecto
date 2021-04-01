@@ -28,7 +28,7 @@ Aqui ves las opciones de lo que puedes hacer:
     3. ¡Records!
 '''))
     menu = input('Ahora cuentame, ¿Qué quieres hacer?: \n ==> ')        #validar aqui
-    while not (int(menu)!= 1 or int(menu)!= 2 or int(menu)!= 3):
+    while (menu != '1' and menu != '2' and menu != '3'):
         print('No seas asi, ingresa una opcion válida 🙄 : ')
         menu = input('¿Qué quieres hacer? (1/2/3): \n ==> ')
     
@@ -42,8 +42,9 @@ ok veo que si quieres jugar , ¿Ya estas registrado?:
 ----------------------------------------------------
 ''')
         opc= input('==> ')
-        while (int(opc) not in range(1,3)) and (not opc.isnumeric()):
+        while (opc != '1' and opc != '2'):
             print('No seas asi, ingresa una opcion válida 🙄 : ')
+            opc= input('==> ')
         if int(opc) == 1:
             print('''
 ----------------------------------------------
@@ -136,6 +137,8 @@ Vamos a registrarte para comenzar la aventura:
         %s''') % (fg(109), attr(0)))
         print('------------------------')
         
+    # elif int(menu)==3:
+    #     records
     otro = input("%s\n¿Desea volver al menu?('S' para 'sí', 'N' para 'no'): %s"% (fg(222), attr(0)))
     while (otro.upper() != 'S') and (otro.upper() != 'N'):
         otro = input("%sPor favor ingrese un valor válido: %s"% (fg(1), attr(0)))

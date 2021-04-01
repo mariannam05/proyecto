@@ -18,6 +18,7 @@ from logica import *
 from adivinanzas import *
 from ahorcado import *
 from dibujos import *
+from criptograma import *
 import main1 
 
 #mensajes
@@ -370,23 +371,24 @@ def func_biblioteca(jugador, tiempo_restante):
                     if seleccion == 'f':
                         os.system('clear')
                         break
-                    # elif seleccion == 'c':
-                    #     #inicio del minijuego             #juego de criptograma
+                    elif seleccion == 'c':
+                        os.system('clear')
+                        criptograma_game(jugador)            #juego de criptograma
 
                 elif seleccion == 'r':
-                    # requisito = 'Martillo'
-                    # print(f'Necesitas tener {requisito} en tu inventario para poder abrir la puerta')
-                    # if not requisito in jugador.inventario:
-                    #     print('La puerta esta cerrada asi que regresate')
-                    #     seleccion = input('escribe f:')
-                    #     while not seleccion == 'f':
-                    #         seleccion = input('Escribe un caracter válido (f): ')
-                    #     os.system('clear')
-                    #     break
-                    # else:
-                    # print(f'¡Perfecto! tienes el {requisito} para romper el candado, puedes entrar al pasillo de los laboratorios')    #en el pasillo de los laboratorios esta el otro juego
-                    os.system('clear')
-                    func_pasillo_laboratorio(jugador, tiempo_restante)
+                    requisito = 'Martillo'
+                    print(f'Necesitas tener {requisito} en tu inventario para poder abrir la puerta')
+                    if not requisito in jugador.inventario:
+                        print('La puerta esta cerrada asi que regresate')
+                        seleccion = input('escribe f:')
+                        while not seleccion == 'f':
+                            seleccion = input('Escribe un caracter válido (f): ')
+                        os.system('clear')
+                        break
+                    else:
+                        print(f'¡Perfecto! tienes el {requisito} para romper el candado, puedes entrar al pasillo de los laboratorios')    #en el pasillo de los laboratorios esta el otro juego
+                        os.system('clear')
+                        func_pasillo_laboratorio(jugador, tiempo_restante)
                 elif seleccion == 'f':
                     os.system('clear')
                     break
@@ -405,7 +407,8 @@ def func_biblioteca(jugador, tiempo_restante):
                         os.system('clear')
                         break
                     # elif seleccion == 'c':
-                        #inicio de minijuego        #juego de preguntas matemáticas
+                    #     os.system('clear')
+                    #     #minijuego       #juego de preguntas matemáticas
 
 
                 elif seleccion == 'l':
@@ -440,3 +443,4 @@ def func_biblioteca(jugador, tiempo_restante):
 
 def play(jugador, tiempo_restante):
     func_biblioteca(jugador, tiempo_restante)
+    
