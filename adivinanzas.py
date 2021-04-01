@@ -2,7 +2,7 @@ from api import *
 from random import randrange, choice
 import os
 
-def adivinanzas_game():
+def adivinanzas_game(jugador):
     intentos = 1
     aciertos = 0
     p = 0 #cant de pistas usadas
@@ -13,17 +13,17 @@ def adivinanzas_game():
     reglas = game['rules']
 
     print('Este es un juego de adivinanzas, debes responder correctamente la pregunta!')
-    print(f'Para jugar necesitas tener en tu inventario {requerido}!!')
     print(f'Estas son las reglas del juego: {reglas}')
     print(f'La recomensa de este juego es: {recompensa}')
+    print('\n')
 
     pregunta = azar['question']
-    respuesta1 = azar['answer']
+    respuesta1 = azar['answers']
     pista1 = azar['clue_1']
     pista2 = azar['clue_2']
     pista3 = azar['clue_3']
 
-    print("Pregunta: {} ".format(pregunta1))
+    print("Pregunta: {} ".format(pregunta))
     respuesta = input('→ ')
     while not respuesta.isalpha:
         print('Ingresaste datos invalidos, intentalo otra vez')

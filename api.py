@@ -35,14 +35,21 @@ papelera_dic = servidores_dic['objects'][2]
 puerta_lab_dic = pasillo_dic['objects'][0]
 
 
-#juego quizizz en banco 1
+#juego quizizz en banco 1 a la izquierda del saman 
 juego_quizizz = banco1_dic['game']
-
-
 
 #juego de logica booleana en pasillo laboratorio
 juego_booleana = puerta_lab_dic['game']
 
-
 #juego adivinanzas en laboratorio en computadora 2
 juego_adivinanzas = comp2_dic['game']
+
+#juego ahorcado en Biblioteca en mueble de libros
+juego_ahorcado = mueble_libros_dic['game']
+
+#juego de logica con dibujos en Plaza rectorado en Saman (Centro)
+juego_dibujos = saman_dic['game']
+
+
+
+

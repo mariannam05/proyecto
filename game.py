@@ -10,23 +10,26 @@ from api import *
 from random import randrange, choice
 from quizizz import *
 from logica import *
+from adivinanzas import *
+from ahorcado import *
+from dibujos import *
 import main1 
 
 #mensajes
 comandos= '''
 presiona los siguientes comandos para moverte:
-r = ir a la derecha de la sala
-l = ir a la izquierda de la sala
-c = ir al centro de la sala
-f = regresar a la sala principal
+r = ir a la derecha de la sala (⇨)
+l = ir a la izquierda de la sala (⇦)
+c = ir al centro de la sala (⇫)
+f = regresar a la sala principal (⇳)
 '''
 
 comandos_saman ='''
 presiona los siguientes comandos para moverte:
-r = ir a la derecha de la sala
-l = ir a la izquierda de la sala
-c = ir al centro de la sala
-b = si quieres volver a la biblioteca
+r = ir a la derecha de la sala (⇨)
+l = ir a la izquierda de la sala (⇦)
+c = ir al centro de la sala (⇫)
+b = si quieres volver a la biblioteca (⇳)
 '''
 
 direccion = '¿Qué quieres hacer? →'
@@ -59,9 +62,9 @@ def func_saman(jugador, tiempo_restante):
                 if seleccion == 'f':
                     os.system('clear')
                     break
-                elif seleccion == 'c':
-                    os.system('clear')
-                    quizizz_game(jugador)
+                # elif seleccion == 'c':
+                #     os.system('clear')
+                #     #inicio del minijuego     #juego de memoria
                     
         elif seleccion == 'l':
             while True:
@@ -72,8 +75,10 @@ def func_saman(jugador, tiempo_restante):
                 if seleccion == 'f':
                     os.system('clear')
                     break
-                # elif seleccion == 'c':
-                #     #inicio del minijuego
+                elif seleccion == 'c':
+                    os.system('clear')
+                    quizizz_game(jugador)       #juego de quizizz
+                    
         elif seleccion == 'c':
             while True:
                 print(imagenes.saman)
@@ -83,8 +88,17 @@ def func_saman(jugador, tiempo_restante):
                 if seleccion == 'f':
                     os.system('clear')
                     break
-                # elif seleccion == 'c':
-                #     #inicio del minijuego
+                elif seleccion == 'c':
+                    os.system('clear')
+                    requisito = ["Titulo Universitario","Mensaje"]
+                    print(f'Necesitas tener {requisito} en tu inventario')
+                    if not requisito in jugador.inventario:
+                        print('Pierdes una vida porque no tienes todos los requisitos para jugar este juego')
+                        jugador.quitar_vidas(1)
+                    else:
+                        os.system('clear')
+                        emojis_game(jugador)        #juego de logica con emojis
+                    
         else: 
             func_biblioteca(jugador, tiempo_restante)
         os.system('clear')
@@ -95,11 +109,10 @@ def func_biblioteca(jugador, tiempo_restante):
     obj_der = 'mueble de libros pequeño'
     obj_cen = 'mueble de biblioteca'
     game = 3
-    ubi = 0
-    doorClosed = True    
+    ubi = 0  
     biblio = Biblioteca(obj_izq,obj_der,obj_cen,ubi, game)
     
-    while doorClosed:
+    while True:
         print(biblio.mostrar())
         jugador.mostrar_atri()
         print(f'Su tiempo restante es {tiempo_restante} minutos!')
@@ -110,6 +123,7 @@ def func_biblioteca(jugador, tiempo_restante):
                     print('Lo que ingresaste en esta sala no es válido, asi que elige otra opción')
                     seleccion = input(direccion).lower()
         os.system('clear')
+
         if seleccion == 'r':
             while True:
                 print(imagenes.mueble_pequeño)
@@ -124,18 +138,23 @@ def func_biblioteca(jugador, tiempo_restante):
                         os.system('clear')
                         break
                     # elif seleccion == 'c':
-                    #     #inicio del minijuego
+                    #     #inicio del minijuego             #juego de criptograma
+
                 elif seleccion == 'r':
                     #va asi porque todavia  no he creado el inventario con la llave en DoorClosed = True
-                    print('La puerta esta cerrada asi que regresate: ')
-                    seleccion = input('escribe f:')
-                    while not seleccion == 'f':
-                        seleccion = input('Escribe un caracter válido: ')
-                    os.system('clear')
-                    break
+                    requisito = 'llave'
+                    print(f'Necesitas tener {requisito} en tu inventario para poder abrir la puerta')
+                    if not requisito in jugador.inventario:
+                        print('La puerta esta cerrada asi que regresate')
+                        seleccion = input('escribe f:')
+                        while not seleccion == 'f':
+                            seleccion = input('Escribe un caracter válido (f): ')
+                        os.system('clear')
+                        break
                     # else:
-                        #cuando ya tiene la llave en su inventario
-                else:
+                    #     print(f'¡Perfecto! tienes la {requisito}, puedes entrar al pasillo de los laboratorios')    #en el pasillo de los laboratorios esta el otro juego
+                    #     func_pasillo_laboratorio(jugador, tiempo_restante)
+                elif seleccion == 'f':
                     os.system('clear')
                     break
 
@@ -152,10 +171,16 @@ def func_biblioteca(jugador, tiempo_restante):
                     if seleccion == 'f':
                         os.system('clear')
                         break
+                    # elif seleccion == 'c':
+                        #inicio de minijuego        #juego de preguntas matemáticas
+
+
                 elif seleccion == 'l':
                     os.system('clear')
-                    func_saman(jugador, tiempo_restante)
-                else:
+                    func_saman(jugador, tiempo_restante)        #nos movemos al cuartos de Plaza Rectorado
+
+
+                elif seleccion == 'f':
                     os.system('clear')
                     break
         else:
@@ -171,6 +196,9 @@ def func_biblioteca(jugador, tiempo_restante):
                     if seleccion == 'f':
                         os.system('clear')
                         break
+                    else:
+                        os.system('clear')
+                        ahorcado_game(jugador)          #juego del ahorcado
                 else:
                     os.system('clear')
                     break
