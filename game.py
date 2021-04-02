@@ -13,13 +13,19 @@ from room_pasillo_laboratorio import *
 from room_saman import *
 from api import *
 from random import randrange, choice
-from quizizz import *
 from logica import *
 from adivinanzas import *
 from ahorcado import *
 from dibujos import *
-from criptograma import *
-import main1 
+from main1 import *
+from Juegos import *
+from Quizizz import *
+from Criptograma import *
+from Sopa_de_Letras import *
+from Ahorcado import *
+from Emojis import *
+from Adivinanzas import *
+from Logica import *
 
 #mensajes
 comandos= '''
@@ -70,7 +76,7 @@ def func_servidores(jugador, tiempo_restante):
     ubi = 0
     game = 3
     serv = Servidores(obj_izq, obj_der, obj_cen, ubi, game)
-    while True:
+    while jugador.vidas > 0:
         print(serv.mostrar())
         jugador.mostrar_atri()
         print(f'Su tiempo restante es {tiempo_restante} minutos!')
@@ -155,7 +161,7 @@ def func_lab(jugador, tiempo_restante):
     ubi = 0
     game = 3
     lab = Laboratorio(obj_izq, obj_der, obj_cen, ubi, game)
-    while True:
+    while jugador.vidas > 0:
         print(lab.mostrar())
         jugador.mostrar_atri()
         print(f'Su tiempo restante es {tiempo_restante} minutos!')
@@ -188,8 +194,28 @@ def func_lab(jugador, tiempo_restante):
                         os.system('clear')
                         break
                     else:
-                        os.system('clear')
-                        adivinanzas_game(jugador)   #juego de logica booleana#inicio del minijuego
+                        premio = 'llave'
+                        if premio in jugador.inventario:            #validamos que no juegue 2 veces
+                            print('Ya reclamaste este premio, regresate')
+                            salida = input('Escribe (f) para regresar: ')
+                            while not salida == 'f':
+                                salida = input('Por favor, escribe (f) para regresar: ')
+                            os.system('clear')
+                            break
+                        else:
+                            os.system('clear')
+                            game = juego_booleana
+                            name = game['name']
+                            recompensa = game['award']
+                            reglas = game['rules']
+                            position = posicion_adivinanzas
+                            cuarto = nombre_adivinanzas
+                            d = Adivinanzas(name, reglas, recompensa, position, cuarto)      #Clase Adivinanzas
+                            d.mostrar_cuarto()
+                            d.mostrar()       
+                            d.adivinanzas_game(jugador)  #juego de adivinanzas
+                        
+                         
                            
         elif seleccion == 'l':
             while True:
@@ -227,9 +253,27 @@ def func_lab(jugador, tiempo_restante):
                     if seleccion == 'f':
                         os.system('clear')
                         break
-                    # else:
-                    #     os.system('clear')
-                    #     #inicio del minijuego          #juego de sopa  de letras
+                    else:
+                        premio = "Vida Extra Sopa"
+                        if premio in jugador.inventario:            #validamos que no juegue 2 veces
+                            print("Ya reclamaste esta vida extra, no puedes jugar más")
+                            salida = input('Escribe (f) para regresar: ')
+                            while not salida == 'f':
+                                salida = input('Por favor, escribe (f) para regresar: ')
+                            os.system('clear')
+                            break
+                        else:
+                            os.system('clear')
+                            game = juego_sopa
+                            name = game['name']
+                            recompensa = game['award']
+                            reglas = game['rules']
+                            position = posicion_sopa
+                            cuarto = nombre_sopa
+                            s = Sopa_de_letras(name, reglas, recompensa, position, cuarto)          #Clase Sopa de letras
+                            s.mostrar_cuarto()
+                            s.mostrar()       
+                            s.sopa_game(jugador)          #juego de sopa  de letras
                 else:
                     os.system('clear')
                     break
@@ -243,7 +287,7 @@ def func_lab(jugador, tiempo_restante):
         os.system('clear')
 
 def func_pasillo_laboratorio(jugador, tiempo_restante):
-    while True:
+    while jugador.vidas > 0:
         print('''
     Nombre del cuarto: Pasillo laboratorio
         ''')
@@ -258,8 +302,27 @@ def func_pasillo_laboratorio(jugador, tiempo_restante):
             os.system('clear')
             break
         elif seleccion == 'c':
-            os.system('clear')
-            logica_game(jugador)   #juego de logica booleana
+            premio = 'libro de Física'
+            if premio in jugador.inventario:            #validamos que no juegue 2 veces
+                print('Ya reclamaste este premio, regresate')
+                salida = input('Escribe (f) para regresar: ')
+                while not salida == 'f':
+                    salida = input('Por favor, escribe (f) para regresar: ')
+                os.system('clear')
+                break
+            else:
+                os.system('clear')
+                game = juego_booleana
+                name = game['name']
+                recompensa = game['award']
+                reglas = game['rules']
+                position = posicion_booleana
+                cuarto = nombre_booleana
+                l = Logica(name, reglas, recompensa, position, cuarto)      #Clase Logica
+                l.mostrar_cuarto()
+                l.mostrar()       
+                l.logica_booleana_game(jugador) #juego de logica booleana
+
         elif seleccion == 'a':
             os.system('clear')
             func_lab(jugador, tiempo_restante) 
@@ -276,7 +339,7 @@ def func_saman(jugador, tiempo_restante):
     ubi = 0
     sam = Saman(obj_izq,obj_der,obj_cen,ubi, game)
     
-    while True:
+    while jugador.vidas > 0:
         print(sam.mostrar())
         jugador.mostrar_atri()
         print(f'Su tiempo restante es {tiempo_restante} minutos!')
@@ -284,8 +347,8 @@ def func_saman(jugador, tiempo_restante):
         print(comandos_saman)
         seleccion = input(direccion).lower()
         while not (seleccion == 'l' or seleccion == 'c' or seleccion == 'r' or seleccion == 'b'):
-                    print('Lo que ingresaste en esta sala no es válido, asi que elige otra opción')
-                    seleccion = input(direccion).lower()
+            print('Lo que ingresaste en esta sala no es válido, asi que elige otra opción')
+            seleccion = input(direccion).lower()
         os.system('clear')
         if seleccion == 'r':
             while True:
@@ -310,8 +373,26 @@ def func_saman(jugador, tiempo_restante):
                     os.system('clear')
                     break
                 elif seleccion == 'c':
-                    os.system('clear')
-                    quizizz_game(jugador)       #juego de quizizz
+                    premio = 'libro de matemáticas'
+                    if premio in jugador.inventario:            #validamos que no juegue 2 veces
+                        print('Ya reclamaste este premio, regresate')
+                        salida = input('Escribe (f) para regresar: ')
+                        while not salida == 'f':
+                            salida = input('Por favor, escribe (f) para regresar: ')
+                        os.system('clear')
+                        break
+                    else:
+                        os.system('clear')
+                        game = juego_quizizz
+                        name = game['name']
+                        recompensa = premio
+                        reglas = game['rules']
+                        position = posicion_quizizz
+                        cuarto = nombre_quizizz
+                        x = Quizizz(name, reglas, recompensa, position, cuarto)         #Clase Quizizz
+                        x.mostrar_cuarto()
+                        x.mostrar()       
+                        x.game_q(jugador)  #juego de quizizz
                     
         elif seleccion == 'c':
             while True:
@@ -330,8 +411,26 @@ def func_saman(jugador, tiempo_restante):
                         print('Pierdes una vida porque no tienes todos los requisitos para jugar este juego')
                         jugador.quitar_vidas(1)
                     else:
-                        os.system('clear')
-                        emojis_game(jugador)        #juego de logica con emojis
+                        premio = 'Disco Duro'
+                        if premio in jugador.inventario:            #validamos que no juegue 2 veces
+                            print('Ya reclamaste este premio, regresate')
+                            salida = input('Escribe (f) para regresar: ')
+                            while not salida == 'f':
+                                salida = input('Por favor, escribe (f) para regresar: ')
+                            os.system('clear')
+                            break
+                        else:
+                            os.system('clear')
+                            game = juego_dibujos
+                            name = game['name']
+                            recompensa = game['award']
+                            reglas = game['rules']
+                            position = posicion_dibujos
+                            cuarto = nombre_dibujos
+                            e = Emojis(name, reglas, recompensa, position, cuarto)        #clase Emojis
+                            e.mostrar_cuarto()
+                            e.mostrar()       
+                            e.emojis_game(jugador)        #juego de logica con emojis
                     
         else: 
             func_biblioteca(jugador, tiempo_restante)
@@ -339,14 +438,14 @@ def func_saman(jugador, tiempo_restante):
 
 
 def func_biblioteca(jugador, tiempo_restante):
-    obj_izq= 'mueble para sentarse'
-    obj_der = 'mueble de libros pequeño'
-    obj_cen = 'mueble de biblioteca'
+    obj_izq= 0
+    obj_der = 0
+    obj_cen = 0
     game = 3
     ubi = 0  
     biblio = Biblioteca(obj_izq,obj_der,obj_cen,ubi, game)
     
-    while True:
+    while jugador.vidas > 0:
         print(biblio.mostrar())
         jugador.mostrar_atri()
         print(f'Su tiempo restante es {tiempo_restante} minutos!')
@@ -372,8 +471,36 @@ def func_biblioteca(jugador, tiempo_restante):
                         os.system('clear')
                         break
                     elif seleccion == 'c':
-                        os.system('clear')
-                        criptograma_game(jugador)            #juego de criptograma
+                        requisito = 'llave'
+                        print(f'No me puedes abrir, busca algo para abrirme')
+                        if not requisito in jugador.inventario:
+                            print('todavia no tienes en tu inventario el objeto que necesito para abrirme, ve y consiguelo!')
+                            seleccion = input('escribe f:')
+                            while not seleccion == 'f':
+                                seleccion = input('Escribe un caracter válido (f): ')
+                            os.system('clear')
+                            break
+                        else:
+                            premio = 'Mensaje: Si estas gradudado puedes pisar el Samán'
+                            if premio in jugador.inventario:                #validamos que no juegue 2 veces
+                                print('Ya reclamaste este premio, regresate')
+                                salida = input('Escribe (f) para regresar: ')
+                                while not salida == 'f':
+                                    salida = input('Por favor, escribe (f) para regresar: ')
+                                os.system('clear')
+                                break
+                            else:
+                                os.system('clear')
+                                game = juego_criptograma
+                                name = game['name']
+                                recompensa = premio
+                                reglas = game['rules']
+                                position = posicion_criptograma
+                                cuarto = nombre_criptograma
+                                c = Criptograma(name, reglas, recompensa, position, cuarto)         #Clase Criptograma
+                                c.mostrar_cuarto()
+                                c.mostrar()       
+                                c.criptograma_game(jugador)            #juego de criptograma
 
                 elif seleccion == 'r':
                     requisito = 'Martillo'
@@ -389,6 +516,7 @@ def func_biblioteca(jugador, tiempo_restante):
                         print(f'¡Perfecto! tienes el {requisito} para romper el candado, puedes entrar al pasillo de los laboratorios')    #en el pasillo de los laboratorios esta el otro juego
                         os.system('clear')
                         func_pasillo_laboratorio(jugador, tiempo_restante)
+
                 elif seleccion == 'f':
                     os.system('clear')
                     break
@@ -433,8 +561,26 @@ def func_biblioteca(jugador, tiempo_restante):
                         os.system('clear')
                         break
                     else:
-                        os.system('clear')
-                        ahorcado_game(jugador)          #juego del ahorcado
+                        premio = 'cable HDMI'       #validamos que no juegue 2 veces
+                        if premio in jugador.inventario:
+                            print('Ya reclamaste este premio, regresate')
+                            salida = input('Escribe (f) para regresar: ')
+                            while not salida == 'f':
+                                salida = input('Por favor, escribe (f) para regresar: ')
+                            os.system('clear')
+                            break
+                        else:
+                            os.system('clear')
+                            game = juego_ahorcado
+                            name = game['name']
+                            recompensa = game['award']
+                            reglas = game['rules']
+                            position = posicion_ahorcado
+                            cuarto = nombre_ahorcado
+                            a = Ahorcado(name, reglas, recompensa, position, cuarto)        #Clase Ahorcado
+                            a.mostrar_cuarto()
+                            a.mostrar()       
+                            a.ahorcado_game(jugador)          #juego del ahorcado
                 else:
                     os.system('clear')
                     break

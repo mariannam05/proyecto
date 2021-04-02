@@ -36,24 +36,41 @@ puerta_lab_dic = pasillo_dic['objects'][0]
 
 
 #juego quizizz en banco 1 a la izquierda del saman 
+nombre_quizizz = banco1_dic['name']
 juego_quizizz = banco1_dic['game']
+posicion_quizizz = banco1_dic['position']
 
 #juego de logica booleana en pasillo laboratorio
+nombre_booleana = puerta_lab_dic['name']
 juego_booleana = puerta_lab_dic['game']
+posicion_booleana = puerta_lab_dic['position']
 
 #juego adivinanzas en laboratorio en computadora 2
+nombre_adivinanzas = comp2_dic['name']
 juego_adivinanzas = comp2_dic['game']
+posicion_adivinanzas = comp2_dic['position']
 
 #juego ahorcado en Biblioteca en mueble de libros
+nombre_ahorcado = mueble_libros_dic['name']
 juego_ahorcado = mueble_libros_dic['game']
+posicion_ahorcado = mueble_libros_dic['position']
 
 #juego de logica con dibujos en Plaza rectorado en Saman (Centro)
+nombre_dibujos = saman_dic['name']
 juego_dibujos = saman_dic['game']
+posicion_dibujos = saman_dic['position']
 
 #juego de criptograma en Biblioteca Mueble pequeño 
+nombre_criptograma = mueble_pequeño_dic['name']
 juego_criptograma = mueble_pequeño_dic['game']
+posicion_criptograma = mueble_pequeño_dic['position']
 
+#juego de preguntas de python en Laboratorio computadora 1
+juego_python = comp1_dic['game']
 
-
+#juego de sopa de letras en Laboratorio pizarra
+nombre_sopa = pizarra_dic['name']
+juego_sopa = pizarra_dic['game']
+posicion_sopa = pizarra_dic['position']
 
 

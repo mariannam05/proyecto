@@ -33,6 +33,7 @@ Aqui ves las opciones de lo que puedes hacer:
         menu = input('¿Qué quieres hacer? (1/2/3): \n ==> ')
     
     if int(menu) == 1:
+        os.system('clear')
         #inicio de la partida pero primero registro y verificacion
         print('''
 ----------------------------------------------------
@@ -46,6 +47,7 @@ ok veo que si quieres jugar , ¿Ya estas registrado?:
             print('No seas asi, ingresa una opcion válida 🙄 : ')
             opc= input('==> ')
         if int(opc) == 1:
+            os.system('clear')
             print('''
 ----------------------------------------------
 Vamos a registrarte para comenzar la aventura:
@@ -73,7 +75,8 @@ Vamos a registrarte para comenzar la aventura:
             
             jugador = Usuario(jugador_activo.username, jugador_activo.contraseña, jugador_activo.edad, jugador_activo.avatar, pistas, vidas, tiempo, win, inventario, dificultad)
             #primera narrativa
-            print(f'''
+            print(f'''1
+
             Bienvenido {jugador.username}...
             Hoy 5 de marzo de 2021, la Universidad sigue en cuarentena (esto no es novedad), lo que sí es novedad es que se robaron un Disco Duro de la Universidad
             del cuarto de redes que tiene toda la información de SAP de estudiantes, pagos y  asignaturas. Necesitamos que nos ayudes a recuperar el disco,
@@ -90,30 +93,56 @@ Vamos a registrarte para comenzar la aventura:
             #comienza el tiempo
             tiempo_limite = playtime * 60
             comenzar_tiempo = time.time() #para comenzar el tiempo
-            fin_tiempo = comenzar_tiempo + tiempo_limite
 
             while True:
-                tiempo_past = time.time() - comenzar_tiempo
-                tiempo_restante = round((tiempo_limite - tiempo_past)/60)
+                elapsed_time = time.time() - comenzar_tiempo
+                mostrar_tiempo= ((tiempo_limite - int(elapsed_time))/60)
+                tiempo_restante = round(mostrar_tiempo)
 
-                if  int(jugador.vidas) <= 0:
-                    print('Oh no, te quedaste sin vidas 😭')            #revisar el por que si pierdo todas las vidas no se detiene el juego
-                    print('%sGAME OVER%s' %(fg(1), attr(0)))
-                    jugador_activo = None
-                    break
-
-                elif time.time() > fin_tiempo:
+                if mostrar_tiempo <= 0:
                     print('Oh no, se te agotó el tiempo 😭')
                     print('%sGAME OVER%s' %(fg(1), attr(0)))
                     jugador_activo = None
+                    exit()
                     break
-                
+
+                if  int(jugador.vidas) <= 0:
+                    print('Oh no, te quedaste sin vidas 😭')            #revisar el por que si pierdo todas las vidas no se detiene el juego
+                    print('                                 %sGAME OVER%s' %(fg(1), attr(0)))
+                    jugador_activo = None
+                    break
+
+        
                 #segunda narrativa
                 print(f'''
                 Bienvenido {jugador.avatar}, gracias por tu disposición a ayudarnos a resolver este inconveniente,  te encuentras actualmente ubicado en la biblioteca, 
                 revisa el menú de opciones para ver qué acciones puedes realizar. Recuerda que el tiempo corre más rápido que un trimestre en este reto.
                 ''')
                 play(jugador, tiempo_restante)      #revisar por que no se va descontando el tiempo
+
+
+            #     tiempo_limite = playtime * 60
+            # comenzar_tiempo = time.time() 
+            # fin_tiempo = comenzar_tiempo + tiempo_limite
+            # while True:
+            #     while jugador.vidas > 0:
+            #         play(jugador)
+            #         elapsed_time = time.time() - comenzar_tiempo
+            #         tiempo_restante = (tiempo_limite - int(elapsed_time))
+            #         tiempo_final = "{:.2f}".format(elapsed_time)
+
+            #         print(f'Tiempo restante: {round(tiempo_restante/60)} minutos!')
+
+            #         if elapsed_time > tiempo_limite:
+            #             jugador.quitar_vidas(jugador.vidas)
+            #             print('Oh no, se te agotó el tiempo 😭')
+            #             print('%sGAME OVER%s' %(fg(1), attr(0)))
+
+            #     if  jugador.vidas <= 0:
+            #         print('Oh no, te quedaste sin vidas 😭')            #revisar el por que si pierdo todas las vidas no se detiene el juego
+            #         print('%sGAME OVER%s' %(fg(1), attr(0)))
+            #         jugador_activo = False
+            #         jugador.selec_tiempo(tiempo_final)
 
 
     elif int(menu)== 2:
@@ -143,6 +172,7 @@ Vamos a registrarte para comenzar la aventura:
     while (otro.upper() != 'S') and (otro.upper() != 'N'):
         otro = input("%sPor favor ingrese un valor válido: %s"% (fg(1), attr(0)))
     if otro.upper() == "S":
+        os.system('clear')
         continue
     else:
         break
