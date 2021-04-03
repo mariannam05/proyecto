@@ -82,6 +82,7 @@ class Ahorcado(Juegos):
         
         print('\n')
         print ('⸭⸭⸭⸭⸭⸭⸭⸭⸭ A H O R C A D O ⸭⸭⸭ (Version Unimetana) ⸭⸭⸭⸭⸭⸭⸭⸭⸭')
+        print(pregunta)
         letraIncorrecta = ""
         letraCorrecta = ""
         respuesta = (quiz['answer']).lower() #palabra secreta a buscar

@@ -65,7 +65,6 @@ def registro_jugador(jugadores):
     jugadores.append(nuevo_jugador)
     print("\n%s¡Jugador registrado con éxito!\n%s"% (fg(10), attr(0)))
     nuevo_jugador.mostrar()
-    print("\n%sRegresa al menu e inicia sesion para empezar a jugar\n%s"% (fg(10), attr(0)))
 
     return jugadores
 

@@ -66,7 +66,9 @@ juego_criptograma = mueble_pequeño_dic['game']
 posicion_criptograma = mueble_pequeño_dic['position']
 
 #juego de preguntas de python en Laboratorio computadora 1
+nombre_python = comp1_dic['name']
 juego_python = comp1_dic['game']
+posicion_python = comp1_dic['position']
 
 #juego de sopa de letras en Laboratorio pizarra
 nombre_sopa = pizarra_dic['name']
@@ -74,3 +76,22 @@ juego_sopa = pizarra_dic['game']
 posicion_sopa = pizarra_dic['position']
 
 
+#juego numeros en Servidores papelera
+nombre_num = papelera_dic['name']
+juego_numeros = papelera_dic['game']
+posicion_num = papelera_dic['position']
+
+#juego numeros en Servidores Rack
+nombre_mezclada = rack_dic['name']
+juego_mezclada = rack_dic['game']
+posicion_mezclada = rack_dic['position']
+
+#juego adivina la pelicula en servidores final 
+juego_final = puerta_serv_dic['game']
+nombre_final = puerta_serv_dic['name']
+posicion_final = puerta_serv_dic['position']
+
+#juego matematica en Biblioteca mueble de sentarse 
+juego_mate = mueble_sentarse_dic['game']
+nombre_mate = mueble_sentarse_dic['name']
+posicion_mate = mueble_sentarse_dic['position']

@@ -26,6 +26,12 @@ from Ahorcado import *
 from Emojis import *
 from Adivinanzas import *
 from Logica import *
+from Numero import *
+from Python import *
+from Mezclada import *
+from Peliculas import *
+from colored import fg, bg, attr
+
 
 #mensajes
 comandos= '''
@@ -69,6 +75,15 @@ f = regresar (⇳)
 '''
 direccion = '¿Qué quieres hacer? →'
 
+def ganador_final(jugador, tiempo_restante):
+    #ultima narrativa
+    print(f'''%s%s
+    ¡¡Ganaste el juego!!
+        ¡Felicidades 'jugador.username' ! Has logrado evitar una catástrofe en la Unimet, pero te das cuenta que todo esto fue un sueño no?        
+        Seguimos en cuarentena y no puedes ir a la universidad. ¡Así que levántate rápido que tienes una clase en zoom en media hora!              %s'''% (fg(0), bg(222), attr(0)))
+
+    return exit()
+
 def func_servidores(jugador, tiempo_restante):
     obj_izq= 'Rack'
     obj_der = 'papelera'
@@ -97,9 +112,27 @@ def func_servidores(jugador, tiempo_restante):
                 if seleccion == 'f':
                     os.system('clear')
                     break
-                # elif seleccion == 'c':
-                #     os.system('clear')
-                #     #inicio del minijuego   #juego de Palabra mezclada
+                elif seleccion == 'c':
+                    premio = 'título Universitario'
+                    if premio in jugador.inventario:            #validamos que no juegue 2 veces
+                        print('Ya reclamaste este premio, regresate')
+                        salida = input('Escribe (f) para regresar: ')
+                        while not salida == 'f':
+                            salida = input('Por favor, escribe (f) para regresar: ')
+                        os.system('clear')
+                        break
+                    else:
+                        os.system('clear')
+                        game = juego_numeros
+                        name = game['name']
+                        recompensa = game['award']
+                        reglas = game['rules']
+                        position = posicion_num
+                        cuarto = nombre_num
+                        a = Numeros(name, reglas, recompensa, position, cuarto)        #Clase Numeros
+                        a.mostrar_cuarto()
+                        a.mostrar()       
+                        a.numero_game(jugador)         #juego de numero al azar
                            
         elif seleccion == 'l':
             while True:
@@ -121,9 +154,28 @@ def func_servidores(jugador, tiempo_restante):
                             seleccion = input('Escribe un caracter válido (f): ')
                         os.system('clear')
                         break
-                    # else:
-                    #     os.system('clear')
-                    #     #inicio del minijuego   #juego de Palabra mezclada
+                    else:
+                        print('¡Perfecto! jajajaj una contraseña muy fácil, ya puedes jugar')
+                        premio = "contraseña"
+                        if premio in jugador.inventario:            #validamos que no juegue 2 veces
+                            print("Ya reclamaste este premio, no puedes jugar más")
+                            salida = input('Escribe (f) para regresar: ')
+                            while not salida == 'f':
+                                salida = input('Por favor, escribe (f) para regresar: ')
+                            os.system('clear')
+                            break
+                        else:
+                            os.system('clear')
+                            game = juego_mezclada
+                            name = game['name']
+                            recompensa = game['award']
+                            reglas = game['rules']
+                            position = posicion_mezclada
+                            cuarto = nombre_mezclada
+                            s = Mezclada(name, reglas, recompensa, position, cuarto)          #Clase Mezclada
+                            s.mostrar_cuarto()
+                            s.mostrar()       
+                            s.mezclada_game(jugador)        #juego de Palabra mezclada
 
         elif seleccion == 'c':
             while True:
@@ -141,9 +193,20 @@ def func_servidores(jugador, tiempo_restante):
                             seleccion = input('Escribe un caracter válido (f): ')
                         os.system('clear')
                         break
-                    # else:
-                    #     os.system('clear')
-                    #     #inicio del minijuego   #juego de libre #Parar el cronómetro y ganar el juego   #si pierdes, vas perdiendo una vida completa
+                    else:
+                        os.system('clear')
+                        game = juego_final
+                        name = 'Adivina la pelicula con emojis'
+                        recompensa = game['award']
+                        reglas = game['rules']
+                        position = posicion_final
+                        cuarto = nombre_final
+                        s = Peliculas(name, reglas, recompensa, position, cuarto)          #Clase Peliculas
+                        s.mostrar_cuarto()
+                        s.mostrar()       
+                        s.peliculas_game(jugador)     #juego de libre (adivina la pelicula con emojis)
+                        ganador_final(jugador, tiempo_restante)
+
                 elif seleccion == 'f':
                     os.system('clear')
                     break
@@ -236,9 +299,27 @@ def func_lab(jugador, tiempo_restante):
                             seleccion = input('Escribe un caracter válido (f): ')
                         os.system('clear')
                         break
-                    # else:
-                    #     os.system('clear')
-                    #     #inicio del minijuego   #juego de Preguntas sobre python
+                    else:
+                        premio = 'carnet'
+                        if premio in jugador.inventario:            #validamos que no juegue 2 veces
+                            print('Ya reclamaste este premio, regresate')
+                            salida = input('Escribe (f) para regresar: ')
+                            while not salida == 'f':
+                                salida = input('Por favor, escribe (f) para regresar: ')
+                            os.system('clear')
+                            break
+                        else:
+                            os.system('clear')
+                            game = juego_python
+                            name = game['name']
+                            recompensa = game['award']
+                            reglas = game['rules']
+                            position = posicion_python
+                            cuarto = nombre_python
+                            l = Python(name, reglas, recompensa, position, cuarto)      #Clase Python
+                            l.mostrar_cuarto()
+                            l.mostrar()       
+                            l.python_game(jugador)   #juego de Preguntas sobre python
 
         elif seleccion == 'c':
             while True:
@@ -463,6 +544,7 @@ def func_biblioteca(jugador, tiempo_restante):
                 seleccion = input('OK tienes el estante pequeño y la puerta que va a los laboratorios, escribe (l) para seleccionar el mueble, (r) para intentar abrir la puerta o (f) para regresar:').lower()
                 while not (seleccion == 'r' or seleccion == 'l' or seleccion== 'f'):  
                     seleccion = input('En esta sala solo puedes seleccionar el mueble, la puerta o regresar, asi que selecciona una opcion válida: ').lower()
+                
                 if seleccion == 'l':
                     seleccion = input('Hay un juego aqui!, escribe (c) si quieres jugar o (f) para regresar: ')
                     while not (seleccion == 'c' or seleccion== 'f'):  
@@ -503,19 +585,19 @@ def func_biblioteca(jugador, tiempo_restante):
                                 c.criptograma_game(jugador)            #juego de criptograma
 
                 elif seleccion == 'r':
-                    requisito = 'Martillo'
-                    print(f'Necesitas tener {requisito} en tu inventario para poder abrir la puerta')
-                    if not requisito in jugador.inventario:
-                        print('La puerta esta cerrada asi que regresate')
-                        seleccion = input('escribe f:')
-                        while not seleccion == 'f':
-                            seleccion = input('Escribe un caracter válido (f): ')
-                        os.system('clear')
-                        break
-                    else:
-                        print(f'¡Perfecto! tienes el {requisito} para romper el candado, puedes entrar al pasillo de los laboratorios')    #en el pasillo de los laboratorios esta el otro juego
-                        os.system('clear')
-                        func_pasillo_laboratorio(jugador, tiempo_restante)
+                    # requisito = 'Martillo'
+                    # print(f'Necesitas tener {requisito} en tu inventario para poder abrir la puerta')
+                    # if not requisito in jugador.inventario:
+                    #     print('La puerta esta cerrada asi que regresate')
+                    #     seleccion = input('escribe f:')
+                    #     while not seleccion == 'f':
+                    #         seleccion = input('Escribe un caracter válido (f): ')
+                    #     os.system('clear')
+                    #     break
+                    # else:
+                    # print(f'¡Perfecto! tienes el {requisito} para romper el candado, puedes entrar al pasillo de los laboratorios')    #en el pasillo de los laboratorios esta el otro juego
+                    os.system('clear')
+                    func_pasillo_laboratorio(jugador, tiempo_restante)
 
                 elif seleccion == 'f':
                     os.system('clear')
@@ -534,9 +616,9 @@ def func_biblioteca(jugador, tiempo_restante):
                     if seleccion == 'f':
                         os.system('clear')
                         break
-                    # elif seleccion == 'c':
-                    #     os.system('clear')
-                    #     #minijuego       #juego de preguntas matemáticas
+                    elif seleccion == 'c':
+                        os.system('clear')
+                        #minijuego       #juego de preguntas matemáticas
 
 
                 elif seleccion == 'l':

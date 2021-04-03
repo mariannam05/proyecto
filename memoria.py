@@ -1,148 +1,164 @@
-# import random
-# def crear_matriz(num):
-#     matriz = []
-#     a = 0
-#     for i in range(6):
-#         matriz.append([])
-#         for j in range(6):
-#             matriz[i].append(num[a])
-#             a += 1
-#     for i in range(len(matriz)):
-#         print(matriz[i])
-#     return matriz
+import random
+import os
+def crear_matriz(num):
+    matriz = []
+    a = 0
+    for i in range(6):
+        matriz.append([])
+        for j in range(6):
+            matriz[i].append(num[a])
+            a += 1
+    for i in range(len(matriz)):
+        print(matriz[i])
+    return matriz
 
-# def crear_tablero():
-#     tablero = [
-#         ["_","_","_","_","_","_"],
-#         ["_","_","_","_","_","_"],
-#         ["_","_","_","_","_","_"],
-#         ["_","_","_","_","_","_"],
-#         ["_","_","_","_","_","_"],
-#         ["_","_","_","_","_","_"]]
+def crear_tablero():
+    tablero = [
+        ["_","_","_","_","_","_"],
+        ["_","_","_","_","_","_"],
+        ["_","_","_","_","_","_"],
+        ["_","_","_","_","_","_"],
+        ["_","_","_","_","_","_"],
+        ["_","_","_","_","_","_"]]
     
-#     for i in tablero:
-#         for j in i:
-#             print(j, " ", end="")
-#         print()
-#     return tablero
+    for i in tablero:
+        for j in i:
+            print(j," ", end="")
+        print()
+    return tablero
 
-# def mostrar(a,b,tablero,matriz):
-#     tablero[b-1][a-1]=matriz[a-1][b-1]
-#     for i in tablero:
-#         for j in i:
-#             print(j, " ", end="")
-#         print()
-#     return tablero[b-1][a-1]
+def mostrar(a,b,tablero,matriz):
+    tablero[b-1][a-1]=matriz[a-1][b-1]
+    for i in tablero:
+        for j in i:
+            print(j," ", end="")
+        print()
+    return tablero[b-1][a-1]
 
-# def limpiar(a1, b1, a2, b2):
-#     tablero[b1-1][a1-1] = "_"
-#     tablero[b2-1][a2-1] = "_"
-#     for i in tablero:
-#         for j in i:
-#             print(j, " ", end="")
-#         print()
+def limpiar(a1, b1, a2, b2):
+    tablero[b1-1][a1-1] = "_"
+    tablero[b2-1][a2-1] = "_"
+    for i in tablero:
+        for j in i:
+            print(j," ", end="")
+        print()
 
-# def cambio_jugador(jugador):
-#     if jugador==1:
-#         jugador == 2
-#     else:
-#         jugador == 1
-#     return jugador
+def cambio_jugador(jugador):
+    if jugador==1:
+        jugador == 2
+    else:
+        jugador == 1
+    return jugador
 
-# def validar(a,b,a2,b2):
-#     if a<1 or a>6 or b<1 or b>6 or tablero[b-1][a-1] != "_":
-#         print("Carta Invalida")
-#         return False
-#     elif a==a2 and b==b2:
-#         print("Esa carta ya fue usada")
-#         return False
-#     else:
-#         return True
+def validar(a,b,a2,b2):
+    if a<1 or a>6 or b<1 or b>6 or tablero[b-1][a-1] != "_":
+        print("Carta Invalida")
+        return False
+    elif a==a2 and b==b2:
+        print("Esa carta ya fue usada")
+        return False
+    else:
+        return True
 
-# def sumar_puntos(puntos):
-#     puntos += 1
-#     return puntos
+def sumar_puntos(puntos):
+    puntos += 1
+    return puntos
 
-# def winner (puntos1, puntos2):
-#     if puntos1 > puntos2:
-#         print(f"El jugador 1 ha ganado {puntos1} puntos")
-#         ganador= True
-#     elif puntos2 > puntos1:
-#         print(f"El jugador 2 ha ganado {puntos2} puntos")
-#         ganador= True
-#     else:
-#         print("Hubo empate")
-#         ganador= True
-#     return ganador
+def dictar_ganador(puntos1, puntos2):
+    if puntos1 > puntos2:
+        print(f"El jugador 1 ha ganado {puntos1} puntos")
+        ganador= True
+    elif puntos2 > puntos1:
+        print(f"El jugador 2 ha ganado {puntos2} puntos")
+        ganador= True
+    else:
+        print("Hubo empate")
+        ganador= True
+    return ganador
 
-# def ver_mov():
-#     guiones = 0
-#     for i in tablero:
-#         for j in i:
-#             if j =="_":
-#                 guiones += 1
-#     return guiones
+def ver_mov():
+    guiones = 0
+    for i in tablero:
+        for j in i:
+            if j =="_":
+                guiones += 1
+    return guiones
 
-# numeros = []
-# print("Empieza el jugeo de memoria")
-# for i in range(1,19):
-#     numeros.append(i)
-#     numeros.append(i)
-# random.shuffle(numeros)
-# matriz = crear_matriz(numeros)
+    
+
+numeros = []
+print("Empieza el jugeo de memoria")
+for i in range(1,19):
+    numeros.append(i)
+    numeros.append(i)
+
+random.shuffle(numeros)
+matriz = crear_matriz(numeros)
 # tablero= crear_tablero()
-# jugando = True
-# jugador = 1
-# puntos1 = 0
-# puntos2 = 0
-# ganador = False
-# guiones = 0
-# while jugando == True and ganador == False:
-#     seguir = False
-#     print(f"sigue el jugador {jugador}")
-#     valido1 = False
-#     valido2 = False
-#     while valido1 == False:
-#         a1= int(input("carta en a del primer numero: "))
-#         b1= int(input("carta en b del primer numero: "))
-#         valido1 = validar(a1, b1, -1, -1)
-#     print(f"Agarraste {matriz[a1-1][b1-1]}")
-#     while valido2 == False:
-#         a2= int(input("carta en a del primer numero: "))
-#         b2= int(input("carta en b del primer numero: "))
-#         valido1 = validar(a2, b2, -1, -1)
-#     print(f"Agarraste {matriz[a2-1][b2-1]}")
-#     tabla1 = mostrar(a1,b1,tablero, matriz)
-#     print("primer numero")
-#     tabla2 = mostrar(a2,b2,tablero, matriz)
-#     print("segundo numero")
-#     if tabla1 == tabla2:
-#         print("Esta bien")
-#         if jugador == 1:
-#             puntos1 = sumar_puntos(puntos1)
-#         else:
-#             puntos2 = sumar_puntos(puntos2)
-#         seguir = True
-#     else:
-#         print("esta mal")
-#         limpiar(a1,b1,a2,b2)
-#     if ver_mov()==0 and ganador==False:
-#         ganador = winner(puntos1, puntos2)
-#         seguir = True
-#     while seguir == False:
-#         resp = input ("¿Quieres seguir?(s/n): ")
-#         if resp == 's':
-#             jugando = True
-#             jugador = cambio_jugador(jugador)
-#             seguir = True
-#         elif resp == 'n':
-#             jugando = False
-#             print(f"puntos finales de jugador 1: {puntos1}")
-#             print(f"puntos finales de jugador 2: {puntos2}")
-#             winner(puntos1,puntos2)
-#             seguir= True
-#         else:
-#             seguir = False
+jugando = True
+jugador = 1
+puntos1 = 0
+puntos2 = 0
+ganador = False
+guiones = 0
+while True:
+    r = input('¿Listo?')
+    if r == 's':
+        os.system('clear')
+        tablero= crear_tablero()
+        while jugando == True and ganador == False:
+            seguir = False
+            print(f"sigue el jugador {jugador}")
+            valido1 = False
+            valido2 = False
+
+            while valido1 == False:
+                a1= int(input("carta en a del primer numero: "))
+                b1= int(input("carta en b del primer numero: "))
+                valido1 = validar(a1, b1, -1, -1)
+            print(f"Agarraste {matriz[a1-1][b1-1]}")
+            print("primer numero")
+            tabla1 = mostrar(a1,b1,tablero, matriz)
+
+            while valido2 == False:
+                a2= int(input("carta en a del segundo numero: "))
+                b2= int(input("carta en b del segundo numero: "))
+                valido2 = validar(a2, b2, -1, -1)
+            print(f"Agarraste {matriz[a2-1][b2-1]}")
+            print("segundo numero")
+            tabla2 = mostrar(a2,b2,tablero, matriz)
+            
+            if tabla1 == tabla2:
+                print("Esta bien")
+                if jugador == 1:
+                    puntos1 = sumar_puntos(puntos1)
+                else:
+                    puntos2 = sumar_puntos(puntos2)
+                seguir = True
+
+            else:
+                print("esta mal")
+                limpiar(a1,b1,a2,b2)
+            if ver_mov()==0 and ganador==False:
+                ganador = dictar_ganador(puntos1, puntos2)
+                seguir = True
+
+            while seguir == False:
+                resp = input ("¿Quieres seguir?(s/n): ")
+                if resp == 's':
+                    jugando = True
+                    jugador = cambio_jugador(jugador)
+                    seguir = True
+                elif resp == 'n':
+                    jugando = False
+                    print(f"puntos finales de jugador 1: {puntos1}")
+                    print(f"puntos finales de jugador 2: {puntos2}")
+                    dictar_ganador(puntos1,puntos2)
+                    seguir= True
+                else:
+                    seguir = False
+    else:
+        continue
 
 
 
@@ -286,46 +302,46 @@
 
 
 
-# import os
+# # import os
 
-# questions=[
-# {
-# "question": "[['😀', '🙄', '🤮', '🥰'],\n['🤮', '😨', '🤓', '😷'],\n['😨', '🤓', '🥰', '😷'],\n['🤑', '🤑', '🙄', '😀']]",
-# "clue_1": "Decirte donde está escondida una que levantes"
-# }
-# ]
+# # questions=[
+# # {
+# # "question": "[['😀', '🙄', '🤮', '🥰'],\n['🤮', '😨', '🤓', '😷'],\n['😨', '🤓', '🥰', '😷'],\n['🤑', '🤑', '🙄', '😀']]",
+# # "clue_1": "Decirte donde está escondida una que levantes"
+# # }
+# # ]
 
-# question1 = questions[0]
-# pregunta1 = question1["question"]  #es una lista de listas
-# pista1 = question1["clue_1"]
-# c1 = pregunta1[3]
-# c2 = pregunta1[8]
-# c3 = pregunta1[13]
-# c4 = pregunta1[18]
-# c5 = pregunta1[25]
-# c6 = pregunta1[30]
-# c7 = pregunta1[35]
-# c8 = pregunta1[40]
+# # question1 = questions[0]
+# # pregunta1 = question1["question"]  #es una lista de listas
+# # pista1 = question1["clue_1"]
+# # c1 = pregunta1[3]
+# # c2 = pregunta1[8]
+# # c3 = pregunta1[13]
+# # c4 = pregunta1[18]
+# # c5 = pregunta1[25]
+# # c6 = pregunta1[30]
+# # c7 = pregunta1[35]
+# # c8 = pregunta1[40]
 
-# c9 = pregunta1[47]
-# c10 = pregunta1[52]
-# c11 = pregunta1[57]
-# c12 = pregunta1[62]
-# c13 = pregunta1[69]
-# c14 = pregunta1[74]
-# c15 = pregunta1[79]
-# c16 = pregunta1[84]
+# # c9 = pregunta1[47]
+# # c10 = pregunta1[52]
+# # c11 = pregunta1[57]
+# # c12 = pregunta1[62]
+# # c13 = pregunta1[69]
+# # c14 = pregunta1[74]
+# # c15 = pregunta1[79]
+# # c16 = pregunta1[84]
 
-# respuestas = ['listo', 'Listo', 'l', 'L']
+# # respuestas = ['listo', 'Listo', 'l', 'L']
 
-# print('Comienza el juego, memoriza la posicion de las cartas: ')
-# print(f'''
-#                     {c1} {c2} {c3} {c4}
-#                     {c5} {c6} {c7} {c8}
-#                     {c9} {c10} {c11} {c12}
-#                     {c13} {c14} {c15} {c16}
-# ''')
-# comienza = input('Escribe (listo / l) para comenzar: ')
+# # print('Comienza el juego, memoriza la posicion de las cartas: ')
+# # print(f'''
+# #                     {c1} {c2} {c3} {c4}
+# #                     {c5} {c6} {c7} {c8}
+# #                     {c9} {c10} {c11} {c12}
+# #                     {c13} {c14} {c15} {c16}
+# # ''')
+# # comienza = input('Escribe (listo / l) para comenzar: ')
 # while not comienza in respuestas:
 #     print('Lo que escribiste no es válido, intentalo nuevamente')
 #     comienza = input('Escribe (listo / l) para comenzar: ')

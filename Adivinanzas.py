@@ -13,7 +13,7 @@ class Adivinanzas(Juegos):
     def mostrar_cuarto(self):
         print(f'Esta en el objeto: {self.cuarto}')
     
-    def adivinanzas_game(jugador):
+    def adivinanzas_game(self, jugador):
         intentos = 1
         aciertos = 0
         p = 0 #cant de pistas usadas
@@ -53,7 +53,6 @@ class Adivinanzas(Juegos):
                     aciertos = 0
                     print('Tu respuesta es incorrecta')
                     jugador.quitar_vidas(1/2)
-                    respuesta = input('→ ')
 
                     if jugador.pistas == 0:
                         print('No tienes mas pistas, sigue intentando tu solo...')
@@ -65,22 +64,23 @@ class Adivinanzas(Juegos):
                             pistas = input('¿Quieres usar una pista?(s/n): ')
 
                         if pistas == 's':
-                            if intentos == 2:          
+                            if p == 0:          
                                 p = p + 1
                                 print('\n')
                                 print(pista1)
                                 respuesta = input('→ ')
-                            elif intentos == 3:
+                            elif p == 1:
                                 p = p + 1
                                 print('\n')
                                 print(pista2)
                                 respuesta = input('→ ')
-                            elif intentos == 4:
+                            elif p == 2:
                                 p = p + 1
                                 print('\n')
                                 print(pista3)
                                 respuesta = input('→ ')
                             else:
+                                p = p + 1
                                 print('\n')
                                 print('Ya viste todas las pistas: ')
                                 print(pista1)

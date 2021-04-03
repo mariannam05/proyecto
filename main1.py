@@ -72,10 +72,11 @@ Vamos a registrarte para comenzar la aventura:
             inventario = []
             tiempo = None
             win = False
+            x = 10
             
             jugador = Usuario(jugador_activo.username, jugador_activo.contraseña, jugador_activo.edad, jugador_activo.avatar, pistas, vidas, tiempo, win, inventario, dificultad)
             #primera narrativa
-            print(f'''1
+            print(f'''
 
             Bienvenido {jugador.username}...
             Hoy 5 de marzo de 2021, la Universidad sigue en cuarentena (esto no es novedad), lo que sí es novedad es que se robaron un Disco Duro de la Universidad
@@ -111,6 +112,7 @@ Vamos a registrarte para comenzar la aventura:
                     print('                                 %sGAME OVER%s' %(fg(1), attr(0)))
                     jugador_activo = None
                     break
+                
 
         
                 #segunda narrativa
