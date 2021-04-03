@@ -1,13 +1,12 @@
-from Juegos import Juegos
+from Juego import Juego
 from api import *
 import os
 import string 
 from random import randrange, choice
 from colored import fg, bg, attr
-from sopaletras import *
 #clase hija de la clase juegos
 
-class Sopa_de_letras(Juegos):
+class Sopa_de_letras(Juego):
     def __init__(self,name, reglas, recompensa, position, cuarto):
         self.cuarto = cuarto
         super().__init__(name,reglas,recompensa,position)
@@ -48,7 +47,7 @@ class Sopa_de_letras(Juegos):
             if pistas == 's':
                 if jugador.pistas > 0:
                     jugador.pistas = jugador.pistas - 1
-                    p +=1
+                    p = p + 1
                     if p == 1:
                         print(pista1)
                     elif p == 2:

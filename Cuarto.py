@@ -1,4 +1,4 @@
-class Cuartos():
+class Cuarto():
     def __init__(self, obj_izq, obj_der, obj_cen, ubi):
         self.obj_izq = obj_izq
         self.obj_der = obj_der

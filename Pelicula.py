@@ -1,11 +1,11 @@
-from Juegos import Juegos
+from Juego import Juego
 
 import os
 from random import randrange, choice, sample
 from colored import fg, bg, attr
 
 #clase hija de la clase juegos
-class Peliculas(Juegos):
+class Pelicula(Juego):
     def __init__(self,name, reglas, recompensa, position, cuarto):
         self.cuarto = cuarto
         super().__init__(name,reglas,recompensa,position)

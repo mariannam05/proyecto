@@ -3,12 +3,7 @@ from imagenes import *
 import os
 from Player import *
 from Usuario import  *
-from Gandhi import *
-from Pelusa import *
-from EugenioMendoza import *
-from Samanexcentrico import *
-from Scharifker import *
-from Funciones import *
+from funciones import *
 from colored import fg, bg, attr
 import time
 from game import *

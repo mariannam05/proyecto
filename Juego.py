@@ -1,4 +1,4 @@
-class Juegos():
+class Juego():
     def __init__(self,name, reglas, recompensa, position):
         self.name = name
         self.recompensa = recompensa

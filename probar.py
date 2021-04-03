@@ -31,15 +31,15 @@ from random import randrange, choice, sample
 # print(f'1) Sin fraccion: {m}')
 # # print(f'1)Con fraccion: {str(Fraction(r))}')
 
-# f= lambda x: ((cos(x))/2) - ((tan(x))/5)
-# func = '((cos(x))/2) - ((tan(x))/5)'
-# print(f'funcion: {func}')
-# result2 = (derivative(f,pi, dx=1e-14))
-# m2 = round(result2, 2)
-# r2 = float(m2)
-# a2 = Fraction(r2)
-# print(f'2) Sin fraccion: {m2}')
-# # print(f'2)Con fraccion: {str(Fraction(r2))}')
+f= lambda x: ((cos(x))/2) - ((tan(x))/5)
+func = '((cos(x))/2) - ((tan(x))/5)'
+print(f'funcion: {func}')
+result2 = (derivative(f,pi, dx=1e-14))
+m2 = round(result2, 2)
+r2 = float(m2)
+a2 = Fraction(r2)
+print(f'2) Sin fraccion: {m2}')
+# print(f'2)Con fraccion: {str(Fraction(r2))}')
 
 # f = lambda x: ((sin(x))/5) - tan(x)
 # func = '((sin(x))/5) - tan(x)'
@@ -68,9 +68,9 @@ from random import randrange, choice, sample
 
 # intentos = 1
 # aciertos = 0
-# p = 0 #cant de pistas usadas
+# p = 0 
 # game = juego_python
-# azar = choice(game['questions']) #escoge un diccionario de la lista aleatoriamente
+# azar = choice(game['questions']) 
 # recompensa = game['award']
 # pregunta = azar['question']
 # respuesta1 = azar['answer']

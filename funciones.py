@@ -2,11 +2,6 @@ import mensajes
 import imagenes
 import os
 from Player import *
-from Gandhi import *
-from Pelusa import *
-from EugenioMendoza import *
-from Samanexcentrico import *
-from Scharifker import *
 from colored import fg, bg, attr
 import pickle
 import os

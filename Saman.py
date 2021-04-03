@@ -1,6 +1,6 @@
-from Cuartos import Cuartos
+from Cuarto import Cuarto
 
-class Saman(Cuartos):
+class Saman(Cuarto):
     def __init__(self,obj_izq, obj_der, obj_cen, ubi, game):
         self.game = game
         super().__init__(obj_izq,obj_der,obj_cen,"Plaza Rectorado")

@@ -1,21 +1,11 @@
-from Juegos import Juegos
+from Juego import Juego
 from api import *
 import os
 from random import randrange, choice
 from colored import fg, bg, attr
 
 #clase hija de la clase juegos
-
-from Juegos import Juegos
-from api import *
-import os
-from random import randrange, choice
-from colored import fg, bg, attr
-from ahorcado import *
-
-#clase hija de la clase juegos
-#el otro archivo ahorcado.py contiene las funciones que complementan el juego
-class Quizizz(Juegos):
+class Quizizz(Juego):
     def __init__(self,name, reglas, recompensa, position, cuarto):
         self.cuarto = cuarto
         super().__init__(name,reglas,recompensa,position)

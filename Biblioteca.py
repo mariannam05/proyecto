@@ -1,6 +1,6 @@
-from Cuartos import Cuartos
+from Cuarto import Cuarto
 
-class Biblioteca(Cuartos):
+class Biblioteca(Cuarto):
     def __init__(self,obj_izq, obj_der, obj_cen, ubi,game):
         self.game = game
         super().__init__('mueble para sentarse','mueble de libros pequeño','mueble de biblioteca',"Biblioteca")

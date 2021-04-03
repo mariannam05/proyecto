@@ -1,11 +1,11 @@
-from Juegos import Juegos
+from Juego import Juego
 from api import *
 import os
 from random import randrange, choice
 from colored import fg, bg, attr
 #clase hija de la clase juegos
 
-class Adivinanzas(Juegos):
+class Adivinanza(Juego):
     def __init__(self,name, reglas, recompensa, position, cuarto):
         self.cuarto = cuarto
         super().__init__(name,reglas,recompensa,position)

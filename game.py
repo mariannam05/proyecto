@@ -1,35 +1,26 @@
 import imagenes
 import os
-from mensajes import *
-from Cuartos import Cuartos
+from Cuarto import Cuarto
 from Biblioteca import Biblioteca
 from Servidores import Servidores
 from Laboratorio import Laboratorio
 from Saman import Saman
-from room_biblioteca import *
-from room_lab import *
-from room_servidores import *
-from room_pasillo_laboratorio import *
-from room_saman import *
 from api import *
 from random import randrange, choice
-from logica import *
-from adivinanzas import *
-from ahorcado import *
-from dibujos import *
 from main1 import *
-from Juegos import *
+from Juego import *
 from Quizizz import *
 from Criptograma import *
 from Sopa_de_Letras import *
 from Ahorcado import *
-from Emojis import *
-from Adivinanzas import *
+from Emoji import *
+from Adivinanza import *
 from Logica import *
 from Numero import *
 from Python import *
 from Mezclada import *
-from Peliculas import *
+from Matematica import *
+from Pelicula import *
 from colored import fg, bg, attr
 
 
@@ -129,7 +120,7 @@ def func_servidores(jugador, tiempo_restante):
                         reglas = game['rules']
                         position = posicion_num
                         cuarto = nombre_num
-                        a = Numeros(name, reglas, recompensa, position, cuarto)        #Clase Numeros
+                        a = Numero(name, reglas, recompensa, position, cuarto)        #Clase Numeros
                         a.mostrar_cuarto()
                         a.mostrar()       
                         a.numero_game(jugador)         #juego de numero al azar
@@ -201,7 +192,7 @@ def func_servidores(jugador, tiempo_restante):
                         reglas = game['rules']
                         position = posicion_final
                         cuarto = nombre_final
-                        s = Peliculas(name, reglas, recompensa, position, cuarto)          #Clase Peliculas
+                        s = Pelicula(name, reglas, recompensa, position, cuarto)          #Clase Peliculas
                         s.mostrar_cuarto()
                         s.mostrar()       
                         s.peliculas_game(jugador)     #juego de libre (adivina la pelicula con emojis)
@@ -273,7 +264,7 @@ def func_lab(jugador, tiempo_restante):
                             reglas = game['rules']
                             position = posicion_adivinanzas
                             cuarto = nombre_adivinanzas
-                            d = Adivinanzas(name, reglas, recompensa, position, cuarto)      #Clase Adivinanzas
+                            d = Adivinanza(name, reglas, recompensa, position, cuarto)      #Clase Adivinanzas
                             d.mostrar_cuarto()
                             d.mostrar()       
                             d.adivinanzas_game(jugador)  #juego de adivinanzas
@@ -508,7 +499,7 @@ def func_saman(jugador, tiempo_restante):
                             reglas = game['rules']
                             position = posicion_dibujos
                             cuarto = nombre_dibujos
-                            e = Emojis(name, reglas, recompensa, position, cuarto)        #clase Emojis
+                            e = Emoji(name, reglas, recompensa, position, cuarto)        #clase Emojis
                             e.mostrar_cuarto()
                             e.mostrar()       
                             e.emojis_game(jugador)        #juego de logica con emojis
@@ -554,8 +545,8 @@ def func_biblioteca(jugador, tiempo_restante):
                         break
                     elif seleccion == 'c':
                         requisito = 'llave'
-                        print(f'No me puedes abrir, busca algo para abrirme')
                         if not requisito in jugador.inventario:
+                            print(f'No me puedes abrir, busca algo para abrirme')
                             print('todavia no tienes en tu inventario el objeto que necesito para abrirme, ve y consiguelo!')
                             seleccion = input('escribe f:')
                             while not seleccion == 'f':
@@ -585,19 +576,19 @@ def func_biblioteca(jugador, tiempo_restante):
                                 c.criptograma_game(jugador)            #juego de criptograma
 
                 elif seleccion == 'r':
-                    # requisito = 'Martillo'
-                    # print(f'Necesitas tener {requisito} en tu inventario para poder abrir la puerta')
-                    # if not requisito in jugador.inventario:
-                    #     print('La puerta esta cerrada asi que regresate')
-                    #     seleccion = input('escribe f:')
-                    #     while not seleccion == 'f':
-                    #         seleccion = input('Escribe un caracter válido (f): ')
-                    #     os.system('clear')
-                    #     break
-                    # else:
-                    # print(f'¡Perfecto! tienes el {requisito} para romper el candado, puedes entrar al pasillo de los laboratorios')    #en el pasillo de los laboratorios esta el otro juego
-                    os.system('clear')
-                    func_pasillo_laboratorio(jugador, tiempo_restante)
+                    requisito = 'Martillo'
+                    if not requisito in jugador.inventario:
+                        print(f'Necesitas tener {requisito} en tu inventario para poder abrir la puerta')
+                        print('La puerta esta cerrada asi que regresate')
+                        seleccion = input('escribe f:')
+                        while not seleccion == 'f':
+                            seleccion = input('Escribe un caracter válido (f): ')
+                        os.system('clear')
+                        break
+                    else:
+                        print(f'¡Perfecto! tienes el {requisito} para romper el candado, puedes entrar al pasillo de los laboratorios')    #en el pasillo de los laboratorios esta el otro juego
+                        os.system('clear')
+                        func_pasillo_laboratorio(jugador, tiempo_restante)
 
                 elif seleccion == 'f':
                     os.system('clear')
@@ -617,8 +608,36 @@ def func_biblioteca(jugador, tiempo_restante):
                         os.system('clear')
                         break
                     elif seleccion == 'c':
-                        os.system('clear')
-                        #minijuego       #juego de preguntas matemáticas
+                        requisito = 'libro de matemáticas'
+                        if not requisito in jugador.inventario:
+                            print('Necesito que sepas derivar')
+                            print('todavia no tienes en tu inventario el objeto que necesito, ve y consiguelo!')
+                            seleccion = input('escribe f:')
+                            while not seleccion == 'f':
+                                seleccion = input('Escribe un caracter válido (f): ')
+                            os.system('clear')
+                            break
+                        else:
+                            premio = 'Vida Extra Mate'
+                            if premio in jugador.inventario:                #validamos que no juegue 2 veces
+                                print('Ya reclamaste este premio, regresate')
+                                salida = input('Escribe (f) para regresar: ')
+                                while not salida == 'f':
+                                    salida = input('Por favor, escribe (f) para regresar: ')
+                                os.system('clear')
+                                break
+                            else:
+                                os.system('clear')
+                                game = juego_mate
+                                name = game['name']
+                                recompensa = game['award']
+                                reglas = game['rules']
+                                position = posicion_mate
+                                cuarto = nombre_mate
+                                c = Matematica(name, reglas, recompensa, position, cuarto)         #Clase Matematica
+                                c.mostrar_cuarto()
+                                c.mostrar()       
+                                c.mate_game(jugador)            #juego de preguntas matemáticas
 
 
                 elif seleccion == 'l':
