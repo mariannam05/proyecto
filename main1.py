@@ -105,8 +105,8 @@ Vamos a registrarte para comenzar la aventura:
                 if  int(jugador.vidas) <= 0:
                     print('Oh no, te quedaste sin vidas 😭')            #revisar el por que si pierdo todas las vidas no se detiene el juego
                     print('                                 %sGAME OVER%s' %(fg(1), attr(0)))
-                    jugador_activo = None
-                    break
+                    exit()
+                    
                 
 
         

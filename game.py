@@ -165,8 +165,10 @@ def func_servidores(jugador, tiempo_restante):
                     seleccion = input('En esta sala solo puedes seleccionar el mueble de libros para jugar o regresarte, asi que selecciona una opcion válida: ').lower()
                 if seleccion == 'c':
                     requisito = ['carnet','Disco Duro']
+                    r1 = "carnet" 
+                    r2 = "Disco Duro"
                     print(f'Debes tener un {requisito} para poder jugar este juego')
-                    if not requisito in jugador.inventario:
+                    if not r1 and r2 in jugador.inventario:
                         print(f'No tienes el {requisito} en tu inventario, asi que debes regresarte a conseguirlo')
                         seleccion = input('escribe (f):')
                         while not seleccion == 'f':
@@ -486,9 +488,11 @@ def func_saman(jugador, tiempo_restante):
                 elif seleccion == 'c':
                     os.system('clear')
                     r_mostrar = ["Titulo Universitario","Mensaje"]
-                    requisito = ['título Universitario', 'Mensaje: Si estas gradudado puedes pisar el Samán']
+                    r1 = "título Universitario" 
+                    r2 = "Mensaje: Si estas gradudado puedes pisar el Samán"
                     print(f'Necesitas tener {r_mostrar} en tu inventario')
-                    if not requisito in jugador.inventario:
+
+                    if not r1 and r2 in jugador.inventario:
                         print('Pierdes una vida porque no tienes todos los requisitos para jugar este juego')
                         jugador.quitar_vidas(1)
                     else:
