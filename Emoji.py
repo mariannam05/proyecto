@@ -51,6 +51,7 @@ class Emoji(Juego):
                     intentos = intentos + 1
                     aciertos = 0
                     print('Tu respuesta es incorrecta')
+                    jugador.quitar_vidas(1)
                     respuesta = input('→ ')
 
         elif eleccion == 'p2':              #pregunta 2 de la api
@@ -79,4 +80,5 @@ class Emoji(Juego):
                     intentos = intentos + 1
                     aciertos = 0
                     print('Tu respuesta es incorrecta')
+                    jugador.quitar_vidas(1)
                     respuesta = input('→ ')
