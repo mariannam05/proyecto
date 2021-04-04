@@ -95,3 +95,8 @@ posicion_final = puerta_serv_dic['position']
 juego_mate = mueble_sentarse_dic['game']
 nombre_mate = mueble_sentarse_dic['name']
 posicion_mate = mueble_sentarse_dic['position']
+
+#juego memoria en Plaza rectorado banco 2
+juego_memoria = banco2_dic['game']
+nombre_memoria = banco2_dic['name']
+posicion_memoria = banco2_dic['position']

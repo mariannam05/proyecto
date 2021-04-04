@@ -21,6 +21,7 @@ from Python import *
 from Mezclada import *
 from Matematica import *
 from Pelicula import *
+from Memoria import *
 from colored import fg, bg, attr
 
 
@@ -70,7 +71,7 @@ def ganador_final(jugador, tiempo_restante):
     #ultima narrativa
     print(f'''%s%s
     ¡¡Ganaste el juego!!
-        ¡Felicidades 'jugador.username' ! Has logrado evitar una catástrofe en la Unimet, pero te das cuenta que todo esto fue un sueño no?        
+        ¡Felicidades! Has logrado evitar una catástrofe en la Unimet, pero te das cuenta que todo esto fue un sueño no?        
         Seguimos en cuarentena y no puedes ir a la universidad. ¡Así que levántate rápido que tienes una clase en zoom en media hora!              %s'''% (fg(0), bg(222), attr(0)))
 
     return exit()
@@ -135,38 +136,26 @@ def func_servidores(jugador, tiempo_restante):
                     os.system('clear')
                     break
                 elif seleccion == 'c':
-                    print('Debes tener la contraseña:')
-                    contraseña = input('''
-                    Ingrese la contraseña aqui: ''')
-                    if not contraseña == 'contraseña':
-                        print("%sContraseña Incorrecta: %s"% (fg(1), attr(0)))
-                        seleccion = input('escribe (f) para regresarte e intentarlo nuevamente:')
-                        while not seleccion == 'f':
-                            seleccion = input('Escribe un caracter válido (f): ')
+                    premio = "contraseña"
+                    if premio in jugador.inventario:            #validamos que no juegue 2 veces
+                        print("Ya reclamaste este premio, no puedes jugar más")
+                        salida = input('Escribe (f) para regresar: ')
+                        while not salida == 'f':
+                            salida = input('Por favor, escribe (f) para regresar: ')
                         os.system('clear')
                         break
                     else:
-                        print('¡Perfecto! jajajaj una contraseña muy fácil, ya puedes jugar')
-                        premio = "contraseña"
-                        if premio in jugador.inventario:            #validamos que no juegue 2 veces
-                            print("Ya reclamaste este premio, no puedes jugar más")
-                            salida = input('Escribe (f) para regresar: ')
-                            while not salida == 'f':
-                                salida = input('Por favor, escribe (f) para regresar: ')
-                            os.system('clear')
-                            break
-                        else:
-                            os.system('clear')
-                            game = juego_mezclada
-                            name = game['name']
-                            recompensa = game['award']
-                            reglas = game['rules']
-                            position = posicion_mezclada
-                            cuarto = nombre_mezclada
-                            s = Mezclada(name, reglas, recompensa, position, cuarto)          #Clase Mezclada
-                            s.mostrar_cuarto()
-                            s.mostrar()       
-                            s.mezclada_game(jugador)        #juego de Palabra mezclada
+                        os.system('clear')
+                        game = juego_mezclada
+                        name = game['name']
+                        recompensa = game['award']
+                        reglas = game['rules']
+                        position = posicion_mezclada
+                        cuarto = nombre_mezclada
+                        s = Mezclada(name, reglas, recompensa, position, cuarto)          #Clase Mezclada
+                        s.mostrar_cuarto()
+                        s.mostrar()       
+                        s.mezclada_game(jugador)        #juego de Palabra mezclada
 
         elif seleccion == 'c':
             while True:
@@ -175,7 +164,7 @@ def func_servidores(jugador, tiempo_restante):
                 while not (seleccion == 'c' or seleccion == 'f'):  
                     seleccion = input('En esta sala solo puedes seleccionar el mueble de libros para jugar o regresarte, asi que selecciona una opcion válida: ').lower()
                 if seleccion == 'c':
-                    requisito = 'carnet'
+                    requisito = ['carnet','Disco Duro']
                     print(f'Debes tener un {requisito} para poder jugar este juego')
                     if not requisito in jugador.inventario:
                         print(f'No tienes el {requisito} en tu inventario, asi que debes regresarte a conseguirlo')
@@ -258,7 +247,7 @@ def func_lab(jugador, tiempo_restante):
                             break
                         else:
                             os.system('clear')
-                            game = juego_booleana
+                            game = juego_adivinanzas
                             name = game['name']
                             recompensa = game['award']
                             reglas = game['rules']
@@ -358,7 +347,7 @@ def func_lab(jugador, tiempo_restante):
             func_servidores(jugador, tiempo_restante)
         os.system('clear')
 
-def func_pasillo_laboratorio(jugador, tiempo_restante):
+def func_pasillo_laboratorio(jugador, tiempo_restante):     
     while jugador.vidas > 0:
         print('''
     Nombre del cuarto: Pasillo laboratorio
@@ -374,26 +363,27 @@ def func_pasillo_laboratorio(jugador, tiempo_restante):
             os.system('clear')
             break
         elif seleccion == 'c':
-            premio = 'libro de Física'
-            if premio in jugador.inventario:            #validamos que no juegue 2 veces
-                print('Ya reclamaste este premio, regresate')
-                salida = input('Escribe (f) para regresar: ')
-                while not salida == 'f':
-                    salida = input('Por favor, escribe (f) para regresar: ')
-                os.system('clear')
-                break
-            else:
-                os.system('clear')
-                game = juego_booleana
-                name = game['name']
-                recompensa = game['award']
-                reglas = game['rules']
-                position = posicion_booleana
-                cuarto = nombre_booleana
-                l = Logica(name, reglas, recompensa, position, cuarto)      #Clase Logica
-                l.mostrar_cuarto()
-                l.mostrar()       
-                l.logica_booleana_game(jugador) #juego de logica booleana
+            while True:
+                premio = 'libro de Física'
+                if premio in jugador.inventario:            #validamos que no juegue 2 veces
+                    print('Ya reclamaste este premio, regresate')
+                    salida = input('Escribe (f) para regresar: ')
+                    while not salida == 'f':
+                        salida = input('Por favor, escribe (f) para regresar: ')
+                    os.system('clear')
+                    break
+                else:
+                    os.system('clear')
+                    game = juego_booleana
+                    name = game['name']
+                    recompensa = game['award']
+                    reglas = game['rules']
+                    position = posicion_booleana
+                    cuarto = nombre_booleana
+                    l = Logica(name, reglas, recompensa, position, cuarto)      #Clase Logica
+                    l.mostrar_cuarto()
+                    l.mostrar()       
+                    l.logica_booleana_game(jugador) #juego de logica booleana
 
         elif seleccion == 'a':
             os.system('clear')
@@ -431,9 +421,27 @@ def func_saman(jugador, tiempo_restante):
                 if seleccion == 'f':
                     os.system('clear')
                     break
-                # elif seleccion == 'c':
-                #     os.system('clear')
-                #     #inicio del minijuego     #juego de memoria
+                elif seleccion == 'c':
+                    premio = 'martillo'
+                    if premio in jugador.inventario:            #validamos que no juegue 2 veces
+                        print('Ya reclamaste este premio, regresate')
+                        salida = input('Escribe (f) para regresar: ')
+                        while not salida == 'f':
+                            salida = input('Por favor, escribe (f) para regresar: ')
+                        os.system('clear')
+                        break
+                    else:
+                        os.system('clear')
+                        game = juego_memoria
+                        name = game['name']
+                        recompensa = game['award']
+                        reglas = game['rules']
+                        position = posicion_memoria
+                        cuarto = nombre_memoria
+                        x = Memoria(name, reglas, recompensa, position, cuarto)         #Clase Mmemoria
+                        x.mostrar_cuarto()
+                        x.mostrar()       
+                        x.memoria_game(jugador)     #juego de memoria
                     
         elif seleccion == 'l':
             while True:
@@ -477,8 +485,9 @@ def func_saman(jugador, tiempo_restante):
                     break
                 elif seleccion == 'c':
                     os.system('clear')
-                    requisito = ["Titulo Universitario","Mensaje"]
-                    print(f'Necesitas tener {requisito} en tu inventario')
+                    r_mostrar = ["Titulo Universitario","Mensaje"]
+                    requisito = ['título Universitario', 'Mensaje: Si estas gradudado puedes pisar el Samán']
+                    print(f'Necesitas tener {r_mostrar} en tu inventario')
                     if not requisito in jugador.inventario:
                         print('Pierdes una vida porque no tienes todos los requisitos para jugar este juego')
                         jugador.quitar_vidas(1)
@@ -576,7 +585,7 @@ def func_biblioteca(jugador, tiempo_restante):
                                 c.criptograma_game(jugador)            #juego de criptograma
 
                 elif seleccion == 'r':
-                    requisito = 'Martillo'
+                    requisito = 'martillo'
                     if not requisito in jugador.inventario:
                         print(f'Necesitas tener {requisito} en tu inventario para poder abrir la puerta')
                         print('La puerta esta cerrada asi que regresate')

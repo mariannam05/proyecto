@@ -4,6 +4,7 @@ import os
 import string 
 from random import randrange, choice
 from colored import fg, bg, attr
+from sopaletras import *        #de aqui tomamos la funcion agregar palabra
 #clase hija de la clase juegos
 
 class Sopa_de_letras(Juego):

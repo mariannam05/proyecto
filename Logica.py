@@ -2,7 +2,7 @@ from Juego import Juego
 from api import *
 import os
 from random import randrange, choice
-from colored import fg, bg, attr
+from colored import fg, bg, attr   
 #clase hija de la clase juegos
 class Logica(Juego):
     def __init__(self,name, reglas, recompensa, position, cuarto):
@@ -17,8 +17,6 @@ class Logica(Juego):
         quiz = choice(game['questions']) #escoge un diccionario de la lista aleatoriamente
         recompensa = game['award']
 
-        print(f'Para jugar necesitas tener en tu inventario {requerido}!!')
-
         pregunta = quiz['question']
         respuesta1 = quiz['answer']
         respuesta2 = lambda x: 'True' if x == 'False' else 'False'
@@ -29,12 +27,12 @@ class Logica(Juego):
         b) {respuesta1}
         Respuesta:
         ''')
-        r = input('(a/b)→ ').lower()
-        while r != 'a' and r != 'b':
-            print('Ingresaste datos invalidos, intentalo otra vez')
-            r = input('(a/b)→ ').lower()
-
         while True:
+            r = input('(a/b)→ ').lower()
+            while r != 'a' and r != 'b':
+                print('Ingresaste datos invalidos, intentalo otra vez')
+                r = input('(a/b)→ ').lower()
+
             if r == 'b':
                 print('¡Tu respuesta es correcta!')
                 print (f"Felicitaciones! Haz ganado un {recompensa}, lo puedes ver en tu inventario!")
@@ -48,3 +46,4 @@ class Logica(Juego):
             else:
                 print('Tu respuesta es incorrecta')
                 jugador.quitar_vidas(1/2)
+                continue

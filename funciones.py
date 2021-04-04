@@ -123,9 +123,10 @@ def elige_dificultad():
     3. Dificil (solo para expertos)
     """)
     opcion = input("=> ")
-    while not (int(opcion)==1 or int(opcion)==2 or int(opcion)==3):
-        opcion = input("%sPor favor ingrese un valor válido (1/2/3): %s"% (fg(1), attr(0)))
-    
+    while (opcion != '1' and opcion != '2' and opcion != '3'):
+            print('No seas asi, ingresa una opcion válida 🙄 : ')
+            opcion= input('==> ')
+            
     if int(opcion) == 1:
         opcion = 'facil'
     elif int(opcion) == 2:

@@ -1,10 +1,9 @@
-from Juegos import Juegos
+from Juego import Juego
 from api import *
 import os
 import string 
 from random import randrange, choice
 from colored import fg, bg, attr
-from sopaletras import *
 from Sopa_de_Letras import *
 
 #archivo donde esta la funcion que se usa en el juego de sopa de letras
