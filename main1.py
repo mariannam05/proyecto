@@ -152,15 +152,18 @@ Vamos a registrarte para comenzar la aventura:
         el problema que te hizo ir hasta la universidad en plena pandemia. 
 
         IMPORTANTE: 
-            El tiempo que tendrás para resolver todos los acertijos dependerá de la dificultad de juego que elijas (fácil, medio, dificil)
+            El tiempo que tendrás para resolver todos los acertijos dependerá de la dificultad de juego que elijas (fácil, medio, dificil), 
+            al igual que la cantidad de vidas y pistas que tienes.
 
         ¿Cómo te mueves en el mapa?
-            Sencillo, como cualquier juego de computadora puedes usar las teclas del teclado, los cuales son:
+            Sencillo, como cualquier juego de computadora puedes usar las teclas del teclado, los principales son:
                 › r = seleccionar el objeto de la derecha de la sala
                 › l = seleccionar el objeto de la izquierda de la sala
                 › c = seleccionar el objeto del centro de la sala
                 › f: regresar a la sala principal (ojo: si estas en una sala principal y pulsas enter no harás nada)
-        %s''') % (fg(109), attr(0)))
+
+            Los demas te los vamos explicando más adelante!
+        %s''') % (fg(45), attr(0)))
         print('------------------------')
         
     # elif int(menu)==3:
