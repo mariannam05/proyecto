@@ -61,20 +61,20 @@ class Memoria(Juego):
                     show_grid(e_grid)
                     print('Encuentra su par')
                     if jugador.pistas > 0:
-                        hint = input('¿Deseas usar una pista? [S] si [N] no\n>>').lower()
-                        while hint != 's' and hint != 'n':
+                        pista = input('¿Quieres usar una pista?(s/n): ').lower()
+                        while pista != 's' and pista != 'n':
                                 print('Ingreso inválido')
-                                hint = input('¿Deseas usar una pista? [S] si [N] no\n>>').lower()
+                                pista = input('¿Quieres usar una pista?(s/n): ').lower()
                     else:
-                        hint = 'n'
-                    if hint == 'n':
+                        pista = 'n'
+                    if pista == 'n':
                             i = input('Fila (X): ')
                             while not i.isnumeric() or int(i) > (len(grid)-1):
-                                print('Ingreso inválido')
+                                print('El valor que ingresaste no es válido')
                                 i = input('Fila (X): ')
                             j = input('Columna (Y): ')
                             while not j.isnumeric() or int(j) > (len(grid)-1):
-                                print('Ingreso inválido')
+                                print('El valor que ingresaste no es válido')
                                 j = input('Fila (X): ')
                             e_grid[int(j)][int(i)] = grid[int(j)][int(i)]
                             if e_grid[int(j)][int(i)] == e_grid[int(y)][int(x)]:
